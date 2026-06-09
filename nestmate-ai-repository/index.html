@@ -45,6 +45,126 @@
         window.location.href = "login.html";
       }
     });
+    // ── NESTMATE VERIFIED POPUP CONTROLLER ENGINE ──
+    window.showVerifiedModal = async function() {
+      const contentDiv = document.getElementById('popupDynamicContent');
+      const backdrop = document.getElementById('popupBackdrop');
+      if (!contentDiv || !backdrop) return;
+
+      contentDiv.innerHTML = `
+        <div class="modal-hero">
+          <h1>Real homes.<br>Real hosts.</h1>
+          <p>No agents. No fake ads. No hidden fees.</p>
+        </div>
+
+        <div class="m-stats-row">
+          <div class="m-stat">
+            <div class="m-stat-num m-stat-live">
+              <span class="m-live-dot"></span><span id="modalHostCount">—</span>
+            </div>
+            <div class="m-stat-lbl">Verified hosts live</div>
+          </div>
+          <div class="m-stat">
+            <div class="m-stat-num">0</div>
+            <div class="m-stat-lbl">Hidden agent fees</div>
+          </div>
+          <div class="m-stat">
+            <div class="m-stat-num">24h</div>
+            <div class="m-stat-lbl">Avg response time</div>
+          </div>
+        </div>
+
+        <div class="m-label">Why we're different</div>
+        <div class="m-trust-list">
+          <div class="m-trust-item">
+            <div class="m-t-icon green">🛡️</div>
+            <div>
+              <div class="m-t-title">Email verified hosts</div>
+              <div class="m-t-desc">Every host signs in with a verified email. Anonymous listings are never published.</div>
+            </div>
+          </div>
+          <div class="m-trust-item">
+            <div class="m-t-icon blue">🤝</div>
+            <div>
+              <div class="m-t-title">Direct open lines</div>
+              <div class="m-t-desc">Connect directly with owners via personal phone or WhatsApp. No middleman loops.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="m-label">Report a listing</div>
+        <div class="m-report-card">
+          <input class="m-r-input" id="mRepEmail" placeholder="Listing host email address" type="email">
+          <select class="m-r-select" id="mRepReason">
+            <option value="">Select a reason...</option>
+            <option value="fake">Fake or misleading listing</option>
+            <option value="incorrect">Incorrect details/photos</option>
+            <option value="suspicious">Suspicious behaviors</option>
+          </select>
+          <input class="m-r-input" id="mRepDetails" placeholder="Any additional context (optional)">
+          <button class="m-r-btn" id="mSubmitReportBtn">Submit Abuse Report</button>
+          <div class="m-success" id="mRepSuccess">✓ Report successfully registered. We will evaluate in 24 hours.</div>
+        </div>
+      `;
+
+      backdrop.style.display = 'flex';
+
+      try {
+        const snapshot = await window.dbTools.getDocs(window.dbTools.collection(window.db, "properties"));
+        const uniqueHosts = new Set();
+        snapshot.forEach(doc => {
+          if(doc.data().userId) uniqueHosts.add(doc.data().userId);
+        });
+        document.getElementById('modalHostCount').textContent = uniqueHosts.size;
+      } catch (err) {
+        console.error("Popup count calculation error:", err);
+        document.getElementById('modalHostCount').textContent = '0';
+      }
+
+      document.getElementById('mSubmitReportBtn').addEventListener('click', submitModalReport);
+    };
+
+    window.closePopup = function() {
+      const backdrop = document.getElementById('popupBackdrop');
+      if (backdrop) backdrop.style.display = 'none';
+    };
+
+    async function submitModalReport(e) {
+      const btn = e.target;
+      const email = document.getElementById('mRepEmail').value.trim();
+      const reason = document.getElementById('mRepReason').value;
+      const details = document.getElementById('mRepDetails').value.trim();
+      const successBox = document.getElementById('mRepSuccess');
+
+      if(!email || !reason) {
+        alert("⚠ Please provide the host email address and select an issue category.");
+        return;
+      }
+
+      try {
+        btn.disabled = true;
+        btn.textContent = "Processing...";
+
+        await window.dbTools.addDoc(window.dbTools.collection(window.db, "reports"), {
+          hostEmail: email,
+          reason: reason,
+          details: details,
+          reportedAt: new Date(),
+          status: 'pending'
+        });
+
+        successBox.style.display = 'block';
+        document.getElementById('mRepEmail').value = '';
+        document.getElementById('mRepReason').value = '';
+        document.getElementById('mRepDetails').value = '';
+      } catch(err) {
+        console.error("Report processing failure:", err);
+        alert("⚠ Could not transmit report logs. Please check your network connection.");
+      } finally {
+        btn.disabled = false;
+        btn.textContent = "Submit Abuse Report";
+      }
+    }
   </script>
   <script src="https://upload-widget.cloudinary.com/global/all.js"></script>
 </head>
