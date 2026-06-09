@@ -80,9 +80,9 @@
           
           <div class="sf-list-row">
             <div class="sf-icon-box glyph-green">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <svg viewBox="0 0 24 24">
                 <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                <path d="M9 12l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M9 12l2 2 4-4"/>
               </svg>
             </div>
             <div class="sf-row-content">
@@ -93,11 +93,8 @@
           
           <div class="sf-list-row">
             <div class="sf-icon-box glyph-blue">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-                <circle cx="8.5" cy="7" r="4"/>
-                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+              <svg viewBox="0 0 24 24">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
               </svg>
             </div>
             <div class="sf-row-content">
@@ -138,7 +135,7 @@
       `;
 
       backdrop.style.display = 'flex';
-      document.body.classList.add('modal-open'); // Added background freeze hook here
+      document.body.classList.add('modal-open');
 
       try {
         const snapshot = await window.dbTools.getDocs(window.dbTools.collection(window.db, "properties"));
@@ -159,7 +156,7 @@
       const backdrop = document.getElementById('popupBackdrop');
       if (backdrop) {
         backdrop.style.display = 'none';
-        document.body.classList.remove('modal-open'); // Added background restoration hook here
+        document.body.classList.remove('modal-open');
       }
     };
 
@@ -187,7 +184,7 @@
           status: 'pending'
         });
 
-        successBox.style.display = 'block';
+        successBox.style.display = 'flex';
         document.getElementById('mRepEmail').value = '';
         document.getElementById('mRepReason').value = '';
         document.getElementById('mRepDetails').value = '';
@@ -204,7 +201,7 @@
 </head>
 <body>
 
-  <div id="auth-overlay" style="position:fixed;inset:0;background:white;display:flex;align-items:center;justify-content:center;z-index:10000;">
+  <div id="auth-overlay" style="position:fixed;inset:0;background:#f5f5f7;display:flex;align-items:center;justify-content:center;z-index:10000;font-family:-apple-system,sans-serif;font-weight:500;color:#86868b;">
     <p>Connecting...</p>
   </div>
 
@@ -233,77 +230,96 @@
   <div id="popupBackdrop" class="popup-backdrop" onclick="closePopup()">
     <div class="popup-card extended-card" onclick="event.stopPropagation()">
       <span class="close-x" onclick="closePopup()">&times;</span>
-      
       <div class="popup-scroll-container">
         <div id="popupDynamicContent"></div>
       </div>
-      
       <button class="apple-btn-black" onclick="closePopup()">Done</button>
     </div>
   </div>
 
-  <div id="myListingsModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.5); backdrop-filter:blur(10px); z-index:3000; align-items:center; justify-content:center; padding:20px;">
-    <div style="background:white; width:100%; max-width:600px; border-radius:28px; padding:30px; max-height:80vh; overflow-y:auto; position:relative;">
-      <h2 style="margin-top:0; font-weight:800; letter-spacing:-0.03em;">My Listings</h2>
-      <span onclick="closeMyListings()" style="position:absolute; top:20px; right:24px; font-size:24px; cursor:pointer; color:#86868b;">&times;</span>
-      <div style="background:#f5f5f7; border-radius:18px; padding:20px; margin-bottom:20px;">
-        <p style="color:#0071e3; font-weight:700; font-size:0.8rem; text-transform:uppercase; margin:0 0 10px 0;">Add New Listing</p>
-        <input type="text" id="modalPropName" placeholder="Property Name" style="width:100%; padding:14px; border-radius:12px; border:1px solid #e0e0e0; margin-bottom:10px; outline:none; background:white; box-sizing:border-box; font-size:0.95rem;">
-        <input type="number" id="modalPropPrice" placeholder="Weekly Rent (£)" style="width:100%; padding:14px; border-radius:12px; border:1px solid #e0e0e0; margin-bottom:10px; outline:none; background:white; box-sizing:border-box; font-size:0.95rem;">
-        <input type="tel" id="modalPropPhone" placeholder="Your Phone Number" style="width:100%; padding:14px; border-radius:12px; border:1px solid #e0e0e0; margin-bottom:10px; outline:none; background:white; box-sizing:border-box; font-size:0.95rem;">
-        <input type="text" id="modalPropAddress" placeholder="Property Address (e.g. 12 Baker St, London)" style="width:100%; padding:14px; border-radius:12px; border:1px solid #e0e0e0; margin-bottom:10px; outline:none; background:white; box-sizing:border-box; font-size:0.95rem;">
-        <button onclick="modalUploadProperty()" style="width:100%; padding:14px; background:black; color:white; border:none; border-radius:12px; font-weight:600; cursor:pointer; font-size:0.95rem;">
-          Publish
-        </button>
-        <p id="modalUploadStatus" style="text-align:center; color:#86868b; font-size:0.85rem; margin-top:8px;"></p>
+  <div id="myListingsModal" class="popup-backdrop" style="z-index: 3000;" onclick="closeMyListings()">
+    <div class="popup-card extended-card" style="max-width: 600px;" onclick="event.stopPropagation()">
+      <span class="close-x" onclick="closeMyListings()">&times;</span>
+      
+      <div class="sf-modal-hero">
+        <h1>My Listings</h1>
+        <p>Publish and manage your active properties</p>
       </div>
-      <div id="myListingsGrid" style="display:flex; flex-direction:column; gap:16px;"></div>
+
+      <div class="popup-scroll-container">
+        <div class="sf-form-card" style="margin-bottom: 24px; background: rgba(0,0,0,0.02);">
+          <div class="sf-section-label" style="margin: 0 0 14px 0; color: var(--accent);">Add New Property</div>
+          
+          <div class="sf-input-wrapper">
+            <input type="text" id="modalPropName" class="sf-input-field" placeholder=" ">
+            <label class="sf-floating-label">Property Name</label>
+          </div>
+          <div class="sf-input-wrapper">
+            <input type="number" id="modalPropPrice" class="sf-input-field" placeholder=" ">
+            <label class="sf-floating-label">Weekly Rent (£)</label>
+          </div>
+          <div class="sf-input-wrapper">
+            <input type="tel" id="modalPropPhone" class="sf-input-field" placeholder=" ">
+            <label class="sf-floating-label">Your Phone Number</label>
+          </div>
+          <div class="sf-input-wrapper">
+            <input type="text" id="modalPropAddress" class="sf-input-field" placeholder=" ">
+            <label class="sf-floating-label">Property Address (e.g. 12 Baker St, London)</label>
+          </div>
+          
+          <button onclick="modalUploadProperty()" class="apple-btn-black" style="margin-top: 4px;">Publish Space</button>
+          <p id="modalUploadStatus" style="text-align:center; color:var(--muted); font-size:12px; margin: 8px 0 0 0;"></p>
+        </div>
+
+        <div id="myListingsGrid" style="display:flex; flex-direction:column; gap:16px;"></div>
+      </div>
     </div>
   </div>
 
-  <div id="propertyDetailModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.6); backdrop-filter:blur(20px); z-index:4000; align-items:center; justify-content:center; padding:20px;">
-    <div style="background:white; width:100%; max-width:540px; border-radius:32px; overflow:hidden; position:relative; max-height:92vh; overflow-y:auto; box-shadow:0 40px 80px rgba(0,0,0,0.3);">
-      <button onclick="closePropertyDetail()" style="position:absolute; top:16px; right:16px; z-index:10; background:rgba(0,0,0,0.45); backdrop-filter:blur(10px); border:none; color:white; width:34px; height:34px; border-radius:50%; font-size:16px; cursor:pointer; display:flex; align-items:center; justify-content:center;">✕</button>
-      <div style="width:100%; height:260px; overflow:hidden;">
+  <div id="propertyDetailModal" class="popup-backdrop" style="z-index:4000;" onclick="closePropertyDetail()">
+    <div class="popup-card extended-card" style="max-width:540px; padding:0; overflow:hidden;" onclick="event.stopPropagation()">
+      <button onclick="closePropertyDetail()" class="video-close-btn" style="top:16px; right:16px;">✕</button>
+      
+      <div style="width:100%; height:260px; overflow:hidden; background:#f0f0f2;">
         <img id="detailImage" src="" style="width:100%; height:100%; object-fit:cover; display:block;">
       </div>
-      <div style="padding:28px 24px 24px;">
-        <h2 id="detailName" style="margin:0 0 6px 0; font-size:1.6rem; font-weight:800; letter-spacing:-0.03em;"></h2>
-        <p id="detailPrice" style="color:#0071e3; font-weight:600; font-size:0.95rem; margin:0 0 24px 0;"></p>
-        <p style="font-size:0.72rem; font-weight:700; color:#86868b; text-transform:uppercase; letter-spacing:0.06em; margin:0 0 10px 0;">Host Contact</p>
+      
+      <div style="padding: 24px 24px 30px 24px;">
+        <h2 id="detailName" style="margin:0 0 4px 0; font-size:24px; font-weight:700; letter-spacing:-0.03em;"></h2>
+        <p id="detailPrice" style="color:var(--accent); font-weight:600; font-size:16px; margin:0 0 24px 0;"></p>
+        
+        <div class="sf-section-label" style="margin: 0 0 8px 0;">Host Contact</div>
         <div style="display:flex; flex-direction:column; gap:10px; margin-bottom:20px;">
-          <div style="display:flex; align-items:center; gap:12px; background:#f5f5f7; border-radius:14px; padding:14px 16px;">
-            <span style="font-size:1.2rem;">📞</span>
+          <div style="display:flex; align-items:center; gap:14px; background:rgba(0,0,0,0.02); border-radius:14px; padding:12px 16px;">
+            <span style="font-size:18px;">📞</span>
             <div>
-              <p style="margin:0; font-size:0.72rem; color:#86868b; font-weight:500;">Phone</p>
-              <p id="detailPhone" style="margin:2px 0 0 0; font-weight:600; font-size:0.95rem;"></p>
+              <p style="margin:0; font-size:10px; color:var(--muted); font-weight:600; text-transform:uppercase;">Phone</p>
+              <p id="detailPhone" style="margin:2px 0 0 0; font-weight:600; font-size:14px;"></p>
             </div>
           </div>
-          <div style="display:flex; align-items:center; gap:12px; background:#f5f5f7; border-radius:14px; padding:14px 16px;">
-            <span style="font-size:1.2rem;">✉️</span>
+          <div style="display:flex; align-items:center; gap:14px; background:rgba(0,0,0,0.02); border-radius:14px; padding:12px 16px;">
+            <span style="font-size:18px;">✉️</span>
             <div>
-              <p style="margin:0; font-size:0.72rem; color:#86868b; font-weight:500;">Email</p>
-              <p id="detailEmail" style="margin:2px 0 0 0; font-weight:600; font-size:0.95rem;"></p>
+              <p style="margin:0; font-size:10px; color:var(--muted); font-weight:600; text-transform:uppercase;">Email</p>
+              <p id="detailEmail" style="margin:2px 0 0 0; font-weight:600; font-size:14px;"></p>
             </div>
           </div>
         </div>
-        <p style="font-size:0.72rem; font-weight:700; color:#86868b; text-transform:uppercase; letter-spacing:0.06em; margin:0 0 10px 0;">Location</p>
-        <div style="display:flex; align-items:center; gap:12px; background:#f5f5f7; border-radius:14px; padding:14px 16px; margin-bottom:10px;">
-          <span style="font-size:1.2rem;">📍</span>
+
+        <div class="sf-section-label" style="margin: 0 0 8px 0;">Location</div>
+        <div style="display:flex; align-items:center; gap:14px; background:rgba(0,0,0,0.02); border-radius:14px; padding:12px 16px; margin-bottom:12px;">
+          <span style="font-size:18px;">📍</span>
           <div>
-            <p style="margin:0; font-size:0.72rem; color:#86868b; font-weight:500;">Address</p>
-            <p id="detailAddress" style="margin:2px 0 0 0; font-weight:600; font-size:0.95rem;"></p>
+            <p style="margin:0; font-size:10px; color:var(--muted); font-weight:600; text-transform:uppercase;">Address</p>
+            <p id="detailAddress" style="margin:2px 0 0 0; font-weight:600; font-size:14px;"></p>
           </div>
         </div>
-        <a id="detailMapLink" href="" target="_blank" style="display:flex; align-items:center; justify-content:center; gap:8px; background:#f5f5f7; color:#1d1d1f; padding:14px; border-radius:14px; text-decoration:none; font-weight:600; font-size:0.9rem; margin-bottom:20px;">
+
+        <a id="detailMapLink" href="" target="_blank" style="display:flex; align-items:center; justify-content:center; gap:8px; background:rgba(0,0,0,0.04); color:var(--text); padding:14px; border-radius:14px; text-decoration:none; font-weight:600; font-size:14px; margin-bottom:20px; transition: background 0.2s;">
           🗺️ Open in Google Maps
         </a>
-        <button onclick="bookNow()" style="width:100%; padding:16px; background:#0071e3; color:white; border:none; border-radius:14px; font-weight:600; cursor:pointer; font-size:1rem; margin-bottom:10px;">
-          Book Now
-        </button>
-        <button onclick="closePropertyDetail()" style="width:100%; padding:16px; background:#f5f5f7; color:#1d1d1f; border:none; border-radius:14px; font-weight:600; cursor:pointer; font-size:1rem;">
-          Close
-        </button>
+
+        <button onclick="bookNow()" class="sf-action-btn" style="border-radius: 14px; padding: 16px;">Book Now</button>
       </div>
     </div>
   </div>
@@ -324,11 +340,11 @@
         <div class="user-menu-container">
           <div class="profile-trigger" onclick="toggleUserMenu()"><span>A</span></div>
           <div id="userDropdown" class="user-dropdown">
-            <div class="dropdown-item" onclick="openPopup('Settings', 'Customize your NestMate preferences.')">Settings</div>
-            <div class="dropdown-item" onclick="openPopup('Contact', 'Reach us at support@nestmate.ai')">Contact</div>
-            <hr style="border:0; border-top:1px solid #eee; margin:5px 0;">
-            <div class="dropdown-item" onclick="myListings()" style="color:#0071e3; font-weight:600;">My Listings</div>
-            <div class="dropdown-item logout-btn" onclick="handleLogout()" style="color:#ff3b30;">Logout</div>
+            <div class="dropdown-item" onclick="showVerifiedModal()">Settings</div>
+            <div class="dropdown-item" onclick="showVerifiedModal()">Contact</div>
+            <hr style="border:0; border-top:1px solid rgba(0,0,0,0.06); margin:6px 0;">
+            <div class="dropdown-item" onclick="myListings()" style="color:var(--accent); font-weight:600;">My Listings</div>
+            <div class="dropdown-item logout-btn" onclick="handleLogout()">Logout</div>
           </div>
         </div>
       </div>
@@ -366,7 +382,7 @@
             </div>
           </div>
 
-          <div class="why-card" onclick="window.location.href='savings.html'" style="cursor:pointer;">
+          <div class="why-card" onclick="showVerifiedModal()" style="cursor:pointer;">
             <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=600" class="why-card-img">
             <div class="why-card-content">
               <p class="why-label">Save Money</p>
@@ -375,7 +391,7 @@
             </div>
           </div>
 
-          <div class="why-card" onclick="window.location.href='contact.html'" style="cursor:pointer;">
+          <div class="why-card" onclick="showVerifiedModal()" style="cursor:pointer;">
             <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=600" class="why-card-img">
             <div class="why-card-content">
               <p class="why-label">Instant Contact</p>
@@ -384,7 +400,7 @@
             </div>
           </div>
 
-          <div class="why-card" onclick="window.location.href='map.html'" style="cursor:pointer;">
+          <div class="why-card" onclick="showVerifiedModal()" style="cursor:pointer;">
             <img src="https://raw.githubusercontent.com/Anil358i/Nestmate.ai/main/image.jpg" class="why-card-img">
             <div class="why-card-content">
               <p class="why-label">Find Your Way</p>
@@ -396,7 +412,7 @@
         </div>
       </section>
 
-      <section class="explore-section fade-in" id="explore" style="text-align:center;">
+      <section class="explore-section fade-in" id="explore">
         <h2>Available Listings</h2>
         <div class="toggle-group">
           <button class="toggle-btn active" onclick="setDuration('day', this)">Day</button>
