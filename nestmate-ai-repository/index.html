@@ -46,64 +46,94 @@
       }
     });
     // ── NESTMATE VERIFIED POPUP CONTROLLER ENGINE ──
+    // ── NESTMATE PREMIUM NATIVE APPLE-THEME OVERLAY ENGINE ──
     window.showVerifiedModal = async function() {
       const contentDiv = document.getElementById('popupDynamicContent');
       const backdrop = document.getElementById('popupBackdrop');
       if (!contentDiv || !backdrop) return;
 
       contentDiv.innerHTML = `
-        <div class="modal-hero">
+        <div class="sf-modal-hero">
           <h1>Real homes.<br>Real hosts.</h1>
           <p>No agents. No fake ads. No hidden fees.</p>
         </div>
 
-        <div class="m-stats-row">
-          <div class="m-stat">
-            <div class="m-stat-num m-stat-live">
-              <span class="m-live-dot"></span><span id="modalHostCount">—</span>
+        <div class="sf-stats-grid">
+          <div class="sf-stat-pill">
+            <div class="sf-stat-num live-accent">
+              <span class="sf-pulse-dot"></span><span id="modalHostCount">—</span>
             </div>
-            <div class="m-stat-lbl">Verified hosts live</div>
+            <div class="sf-stat-lbl">Verified hosts live</div>
           </div>
-          <div class="m-stat">
-            <div class="m-stat-num">0</div>
-            <div class="m-stat-lbl">Hidden agent fees</div>
+          <div class="sf-stat-pill">
+            <div class="sf-stat-num">0</div>
+            <div class="sf-stat-lbl">Hidden agent fees</div>
           </div>
-          <div class="m-stat">
-            <div class="m-stat-num">24h</div>
-            <div class="m-stat-lbl">Avg response time</div>
+          <div class="sf-stat-pill">
+            <div class="sf-stat-num">24h</div>
+            <div class="sf-stat-lbl">Avg response time</div>
           </div>
         </div>
 
-        <div class="m-label">Why we're different</div>
-        <div class="m-trust-list">
-          <div class="m-trust-item">
-            <div class="m-t-icon green">🛡️</div>
-            <div>
-              <div class="m-t-title">Email verified hosts</div>
-              <div class="m-t-desc">Every host signs in with a verified email. Anonymous listings are never published.</div>
+        <div class="sf-section-label">Why we're different</div>
+        <div class="sf-list-group">
+          
+          <div class="sf-list-row">
+            <div class="sf-icon-box glyph-green">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                <path d="M9 12l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="sf-row-content">
+              <div class="sf-row-title">Email Verified Accounts</div>
+              <div class="sf-row-desc">Every host logs in via authenticated email matches. Anonymous postings are barred.</div>
             </div>
           </div>
-          <div class="m-trust-item">
-            <div class="m-t-icon blue">🤝</div>
-            <div>
-              <div class="m-t-title">Direct open lines</div>
-              <div class="m-t-desc">Connect directly with owners via personal phone or WhatsApp. No middleman loops.</div>
+          
+          <div class="sf-list-row">
+            <div class="sf-icon-box glyph-blue">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                <circle cx="8.5" cy="7" r="4"/>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg>
+            </div>
+            <div class="sf-row-content">
+              <div class="sf-row-title">Direct Open Lines</div>
+              <div class="sf-row-desc">Connect directly with owners via personal phone numbers or direct email routing.</div>
             </div>
           </div>
         </div>
 
-        <div class="m-label">Report a listing</div>
-        <div class="m-report-card">
-          <input class="m-r-input" id="mRepEmail" placeholder="Listing host email address" type="email">
-          <select class="m-r-select" id="mRepReason">
-            <option value="">Select a reason...</option>
-            <option value="fake">Fake or misleading listing</option>
-            <option value="incorrect">Incorrect details/photos</option>
-            <option value="suspicious">Suspicious behaviors</option>
-          </select>
-          <input class="m-r-input" id="mRepDetails" placeholder="Any additional context (optional)">
-          <button class="m-r-btn" id="mSubmitReportBtn">Submit Abuse Report</button>
-          <div class="m-success" id="mRepSuccess">✓ Report successfully registered. We will evaluate in 24 hours.</div>
+        <div class="sf-section-label">Report a listing</div>
+        <div class="sf-form-card">
+          <div class="sf-input-wrapper">
+            <input class="sf-input-field" id="mRepEmail" placeholder=" " type="email" required>
+            <label class="sf-floating-label">Listing host email address</label>
+          </div>
+          
+          <div class="sf-input-wrapper">
+            <select class="sf-select-field" id="mRepReason" required>
+              <option value="" disabled selected hidden></option>
+              <option value="fake">Fake or misleading listing</option>
+              <option value="incorrect">Incorrect details/photos</option>
+              <option value="suspicious">Suspicious behaviors</option>
+            </select>
+            <label class="sf-floating-label">Select a reason...</label>
+          </div>
+
+          <div class="sf-input-wrapper">
+            <input class="sf-input-field" id="mRepDetails" placeholder=" " type="text">
+            <label class="sf-floating-label">Any additional context (optional)</label>
+          </div>
+          
+          <button class="sf-action-btn" id="mSubmitReportBtn">Submit Abuse Report</button>
+          <div class="sf-success-toast" id="mRepSuccess">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+            Report successfully registered.
+          </div>
         </div>
       `;
 
@@ -117,7 +147,7 @@
         });
         document.getElementById('modalHostCount').textContent = uniqueHosts.size;
       } catch (err) {
-        console.error("Popup count calculation error:", err);
+        console.error("Popup engine metric fault:", err);
         document.getElementById('modalHostCount').textContent = '0';
       }
 
