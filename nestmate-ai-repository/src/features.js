@@ -1,7 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import { getFirestore, collection, getDocs, addDoc, query } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-// Central Firebase Config (Shared by all feature cards)
 const firebaseConfig = {
   apiKey: "AIzaSyDTxyr3zJGsyfmdztvfFz8aw9XSyPCNeQM",
   authDomain: "nestmate-ai.firebaseapp.com",
@@ -14,10 +13,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// ─────────────────────────────────────────────────────────
-// FEATURE CARD 1: Real Homes, Real Hosts (verified.html)
-// ─────────────────────────────────────────────────────────
-
+// --- CARD 1 FEATURE CODE ---
 async function loadVerifiedHostCount() {
   try {
     const q = query(collection(db, "properties"));
@@ -29,7 +25,7 @@ async function loadVerifiedHostCount() {
     const el = document.getElementById('hostCount');
     if (el) el.textContent = uniqueHosts.size;
   } catch (error) {
-    console.error("Metrics error:", error);
+    console.error("Metrics execution fault:", error);
   }
 }
 
@@ -42,13 +38,14 @@ async function submitReport(event) {
   const errorMsg = document.getElementById('errorMsg');
 
   if (!email || !reason) {
-    errorMsg.textContent = '⚠ Please enter the host email and select a reason.';
-    errorMsg.style.display = 'block';
+    if (errorMsg) {
+      errorMsg.textContent = '⚠ Please enter the host email and select a reason.';
+      errorMsg.style.display = 'block';
+    }
     return;
   }
 
   try {
-    btn.classList.add('loading');
     btn.disabled = true;
     await addDoc(collection(db, "reports"), {
       hostEmail: email,
@@ -57,48 +54,19 @@ async function submitReport(event) {
       reportedAt: new Date(),
       status: 'pending'
     });
-    document.getElementById('reportEmail').value = '';
-    document.getElementById('reportReason').value = '';
-    document.getElementById('reportDetails').value = '';
-    successMsg.style.display = 'block';
-    setTimeout(() => { successMsg.style.display = 'none'; }, 4000);
+    if(successMsg) successMsg.style.display = 'block';
   } catch (error) {
-    errorMsg.textContent = '⚠ Error submitting report.';
-    errorMsg.style.display = 'block';
+    if(errorMsg) errorMsg.style.display = 'block';
   } finally {
-    btn.classList.remove('loading');
     btn.disabled = false;
   }
 }
 
-// ─────────────────────────────────────────────────────────
-// FUTURE FEATURE CARDS (Cards 2, 3, and 4)
-// ─────────────────────────────────────────────────────────
-function initCardTwo() {
-  // Your code for the second feature card goes here later!
-}
-
-function initCardThree() {
-  // Your code for the third feature card goes here later!
-}
-
-
-// ─────────────────────────────────────────────────────────
-// CENTRAL ROUTER (Prevents crashes by checking elements)
-// ─────────────────────────────────────────────────────────
+// --- CENTRAL FEATURE ROUTER ROUTINES ---
 document.addEventListener('DOMContentLoaded', () => {
-  
-  // Check if we are on the Card 1 (Verified) Page
   const submitBtn = document.getElementById('submitReportBtn');
   if (submitBtn) {
     loadVerifiedHostCount();
     submitBtn.addEventListener('click', submitReport);
   }
-
-  // Check if we are on the Card 2 Page
-  const cardTwoElement = document.getElementById('cardTwoUniqueId');
-  if (cardTwoElement) {
-    initCardTwo();
-  }
-  
 });
