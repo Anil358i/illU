@@ -1,4 +1,6 @@
-/* ── APPLE DESIGN SYSTEM VARIABLES ── */
+/* ==========================================================================
+   ── APPLE DESIGN SYSTEM VARIABLES ──
+   ========================================================================== */
 :root {
   --bg: #f5f5f7;
   --surface: rgba(255, 255, 255, 0.85);
@@ -13,7 +15,9 @@
   --apple-red: #ff3b30;
 }
 
-/* ── BASE RESET & SAN FRANCISCO TYPOGRAPHY ── */
+/* ==========================================================================
+   ── BASE RESET & SAN FRANCISCO TYPOGRAPHY ──
+   ========================================================================== */
 * { 
   box-sizing: border-box; 
   -webkit-font-smoothing: antialiased; 
@@ -37,7 +41,9 @@ body.modal-open {
   height: 100vh !important;
 }
 
-/* ── FULL WIDTH NAVIGATION HEADER ── */
+/* ==========================================================================
+   ── FULL WIDTH NAVIGATION HEADER ──
+   ========================================================================== */
 .site-header {
   position: sticky;
   top: 0;
@@ -82,7 +88,9 @@ body.modal-open {
   opacity: 1; 
 }
 
-/* ── PROFILE & USER MANAGEMENT DROPDOWN ── */
+/* ==========================================================================
+   ── PROFILE & USER MANAGEMENT DROPDOWN ──
+   ========================================================================== */
 .user-menu-container { 
   position: relative; 
 }
@@ -134,7 +142,9 @@ body.modal-open {
   color: #d70015 !important;
 }
 
-/* ── CENTERED MODAL OVERLAY BASE ── */
+/* ==========================================================================
+   ── CENTERED MODAL OVERLAY BASE ──
+   ========================================================================== */
 .popup-backdrop {
   position: fixed; 
   inset: 0; 
@@ -171,7 +181,9 @@ body.modal-open {
   color: var(--text);
 }
 
-/* ── PREMIUM INTERACTIVE EXTENDED MODAL ── */
+/* ==========================================================================
+   ── PREMIUM INTERACTIVE EXTENDED MODAL ──
+   ========================================================================== */
 .extended-card {
   max-width: 760px;
   width: 92%;
@@ -263,7 +275,9 @@ body.modal-open {
   50% { opacity: 0.3; transform: scale(0.9); } 
 }
 
-/* ── AUTHENTIC COHESIVE SYSTEM FEATURE ROW LAYOUT ── */
+/* ==========================================================================
+   ── AUTHENTIC COHESIVE SYSTEM FEATURE ROW LAYOUT ──
+   ========================================================================== */
 .sf-section-label { 
   font-size: 12px; 
   font-weight: 600; 
@@ -301,7 +315,6 @@ body.modal-open {
   flex-shrink: 0; 
   margin-top: 2px; 
 }
-/* Micro-translucent tints over pure system color layers */
 .sf-icon-box.glyph-green { background: rgba(52, 199, 89, 0.14); color: #24b23e; }
 .sf-icon-box.glyph-blue { background: rgba(0, 113, 227, 0.12); color: var(--accent); }
 .sf-icon-box svg { 
@@ -332,7 +345,9 @@ body.modal-open {
   letter-spacing: -0.005em;
 }
 
-/* ── iOS FORMS & INTERACTIVE FLOATING ELEMENTS ── */
+/* ==========================================================================
+   ── iOS FORMS & INTERACTIVE FLOATING ELEMENTS ──
+   ========================================================================== */
 .sf-form-card { 
   background: rgba(255, 255, 255, 0.5); 
   border: 0.5px solid rgba(0,0,0,0.06); 
@@ -434,13 +449,17 @@ body.modal-open {
   gap: 6px;
 }
 
-/* ── BOLD HERO STAGE ── */
+/* ==========================================================================
+   ── BOLD HERO STAGE ──
+   ========================================================================== */
 .hero-section { text-align: center; padding: 120px 24px 80px 24px; }
 .hero-title { font-size: clamp(3.5rem, 10vw, 6rem); font-weight: 800; letter-spacing: -0.05em; line-height: 1.05; margin: 0; }
 .hero-title span { display: block; color: var(--muted); font-weight: 700; }
 .hero-copy { font-size: 1.3rem; color: var(--muted); margin-top: 20px; }
 
-/* ── EXPLORE HORIZONTAL DATA CAROUSEL ── */
+/* ==========================================================================
+   ── EXPLORE HORIZONTAL DATA CAROUSEL ──
+   ========================================================================== */
 .explore-section { padding: 60px 0; text-align: center; }
 .carousel-outer {
   overflow-x: auto;
@@ -490,17 +509,23 @@ body.modal-open {
 .prop-name { font-weight: 600; font-size: 1.1rem; margin-bottom: 5px; color: var(--text); }
 .prop-price strong { font-size: 1.2rem; color: #000; }
 
-/* ── SYSTEM SEGMENTED PILL CONTROLS ── */
+/* ==========================================================================
+   ── SYSTEM SEGMENTED PILL CONTROLS ──
+   ========================================================================== */
 .toggle-group { background: rgba(0,0,0,0.05); padding: 4px; border-radius: var(--radius-pill); display: inline-flex; margin: 20px 0; }
 .toggle-btn { background: transparent; border: none; padding: 8px 24px; border-radius: var(--radius-pill); cursor: pointer; color: var(--muted); font-weight: 500; }
 .toggle-btn.active { background: var(--surface-solid); color: black; font-weight: 700; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
 
-/* ── HOSTING MODULES ── */
+/* ==========================================================================
+   ── HOSTING MODULES ──
+   ========================================================================== */
 .upload-section { padding: 60px 24px; }
 .glass-card { max-width: 500px; margin: 0 auto; text-align: center; }
 .glass-card input { width: 100%; padding: 16px; margin-bottom: 12px; border-radius: 12px; border: 1px solid var(--line); outline: none; background: #fbfbfd; }
 
-/* ── LIVE INTERACTIVE CHAT ENVIRONMENT ── */
+/* ==========================================================================
+   ── LIVE INTERACTIVE CHAT ENVIRONMENT ──
+   ========================================================================== */
 .demo-section { padding: 0 24px 80px; }
 .chat-wrapper { background: var(--surface-solid); border-radius: 28px; padding: 30px; box-shadow: var(--shadow); max-width: 800px; margin: 60px auto; }
 .chat-messages { min-height: 200px; max-height: 400px; overflow-y: auto; display: flex; flex-direction: column; gap: 16px; }
@@ -515,7 +540,9 @@ body.modal-open {
 .chat-input-area input { flex: 1; border: none; background: transparent; padding: 0 20px; outline: none; }
 .send-btn { background: var(--accent); color: white; border: none; padding: 10px 24px; border-radius: var(--radius-pill); font-weight: 600; cursor: pointer; }
 
-/* ── BRAND VALUE PROPOSITION (WHY NESTMATE) ── */
+/* ==========================================================================
+   ── BRAND VALUE PROPOSITION (WHY NESTMATE) ──
+   ========================================================================== */
 .why-section { padding: 60px 0; }
 .why-heading { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800; letter-spacing: -0.04em; margin: 0 0 24px 40px; text-align: left; }
 .why-carousel { display: flex; gap: 20px; overflow-x: auto; overflow-y: hidden; padding: 10px 40px 30px; scrollbar-width: none; scroll-snap-type: x mandatory; }
@@ -540,7 +567,9 @@ body.modal-open {
 .why-title { font-size: 1.3rem; font-weight: 800; letter-spacing: -0.03em; line-height: 1.2; margin: 0 0 10px 0; color: var(--text); }
 .why-desc { font-size: 0.88rem; color: var(--muted); line-height: 1.5; margin: 0; }
 
-/* ── AV MEDIA & BANNER SYSTEM ── */
+/* ==========================================================================
+   ── AV MEDIA & BANNER SYSTEM ──
+   ========================================================================== */
 .video-banner-section { padding: 20px 40px 60px; }
 .video-banner-heading { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800; letter-spacing: -0.04em; margin: 0 0 20px 0; text-align: left; }
 .video-banner-card { position: relative; width: 100%; height: clamp(280px, 40vw, 480px); border-radius: 24px; overflow: hidden; cursor: pointer; background: #1d1d1f; }
@@ -569,9 +598,12 @@ body.modal-open {
 /* Animations & Structural Controls */
 .fade-in { opacity: 0; transform: translateY(20px); transition: 0.8s ease-out; }
 .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+/* ==========================================================================
+   ── UNIFIED ECOSYSTEM BREAKPOINT MATRIX & RESPONSIVE DESIGN ──
+   ========================================================================== */
 .mobile-menu-btn { display: none; }
 
-/* ── UNIFIED ECOSYSTEM BREAKPOINT MATRIX ── */
 @media (max-width: 768px) {
   .nav-links {
     display: none !important;
@@ -632,17 +664,24 @@ body.modal-open {
     z-index: 999;
     border-bottom: 1px solid var(--line);
   }
+  
+  /* Responsive Balance Modifications for Standalone Calculator Card */
+  .sf-calc-grid {
+    grid-template-columns: 1fr;
+  }
 }
-/* ── CALCULATION UTILITY GRID EXTENSIONS ── */
+
+/* ==========================================================================
+   ── CARD 2: STANDALONE SAVINGS CALCULATOR PAGE UTILITIES ──
+   ========================================================================== */
 .sf-back-link {
   display: inline-flex;
   align-items: center;
   color: var(--accent);
   font-weight: 600;
-  font-size: 14px;
+  font-size: 15px;
   text-decoration: none;
-  margin-bottom: 24px;
-  transition: opacity 0.2s ease;
+  transition: opacity 0.15s ease;
 }
 .sf-back-link:hover {
   opacity: 0.7;
