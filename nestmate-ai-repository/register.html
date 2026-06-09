@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Instant Contact — NestMate AI</title>
+  <title>Listings Map — NestMate AI</title>
   <link rel="stylesheet" href="src/style.css">
 </head>
 <body>
@@ -13,169 +13,112 @@
     <a href="index.html" class="back-btn">← Back to NestMate</a>
 
     <!-- HERO -->
-    <h1>One tap<br>to connect.</h1>
-    <p class="subtitle">Reach any NestMate host instantly — no middlemen, no waiting, no agent fees.</p>
+    <h1>Every listing<br>on the map.</h1>
+    <p class="subtitle">Search any London area to find NestMate properties near you. Every listing has a verified address and a direct Google Maps link.</p>
 
     <!-- STATS ROW -->
-    <div class="sf-stats-grid contact-stats-grid">
+    <div class="sf-stats-grid map-stats-grid">
       <div class="sf-stat-pill">
-        <div class="sf-stat-num live-accent">
-          <span class="sf-pulse-dot"></span>
-          <span id="hostCount">—</span>
-        </div>
-        <div class="sf-stat-lbl">Hosts online</div>
+        <div class="sf-stat-num">📍</div>
+        <div class="sf-stat-lbl">Exact address</div>
       </div>
       <div class="sf-stat-pill">
-        <div class="sf-stat-num">0</div>
-        <div class="sf-stat-lbl">Agent fees</div>
+        <div class="sf-stat-num">🗺️</div>
+        <div class="sf-stat-lbl">Maps link</div>
       </div>
       <div class="sf-stat-pill">
-        <div class="sf-stat-num">24h</div>
-        <div class="sf-stat-lbl">Avg response</div>
+        <div class="sf-stat-num">🚇</div>
+        <div class="sf-stat-lbl">Commute ready</div>
       </div>
     </div>
 
+    <!-- SEARCH BAR -->
+    <div class="map-search-bar">
+      <input
+        type="text"
+        class="map-search-input"
+        id="areaInput"
+        placeholder="Search area e.g. Hackney, Brixton, Canary Wharf..."
+        onkeydown="if(event.key==='Enter') searchArea()"
+      >
+      <button class="map-search-btn" onclick="searchArea()">Search</button>
+    </div>
+
+    <!-- MAP IFRAME -->
+    <iframe
+      id="mapFrame"
+      class="map-frame"
+      src="https://www.google.com/maps/embed/v1/search?q=rental+properties+London&key=AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY"
+      allowfullscreen>
+    </iframe>
+
+    <!-- ZONE BUTTONS -->
+    <p class="sf-section-label">Browse by zone</p>
+    <div class="zone-grid">
+      <button class="zone-btn" onclick="searchZone('Zone 1 Central London')">Zone 1</button>
+      <button class="zone-btn" onclick="searchZone('Zone 2 London')">Zone 2</button>
+      <button class="zone-btn" onclick="searchZone('Zone 3 London')">Zone 3</button>
+      <button class="zone-btn" onclick="searchZone('Hackney London')">Hackney</button>
+      <button class="zone-btn" onclick="searchZone('Brixton London')">Brixton</button>
+      <button class="zone-btn" onclick="searchZone('Canary Wharf London')">Canary Wharf</button>
+      <button class="zone-btn" onclick="searchZone('Shoreditch London')">Shoreditch</button>
+      <button class="zone-btn" onclick="searchZone('Peckham London')">Peckham</button>
+      <button class="zone-btn" onclick="searchZone('Stratford London')">Stratford</button>
+    </div>
+
     <!-- HOW IT WORKS -->
-    <p class="sf-section-label">How it works</p>
+    <p class="sf-section-label">What you get on every listing</p>
     <div class="sf-list-group">
       <div class="sf-list-row">
         <div class="sf-icon-box glyph-green">
           <svg viewBox="0 0 24 24">
-            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+            <circle cx="12" cy="10" r="3"/>
           </svg>
         </div>
         <div class="sf-row-content">
-          <div class="sf-row-title">Direct Phone / WhatsApp</div>
-          <div class="sf-row-desc">Every listing shows the host's real phone number. Call or message on WhatsApp in one tap — no form-filling, no waiting room.</div>
+          <div class="sf-row-title">Google Maps Link on Every Listing</div>
+          <div class="sf-row-desc">One tap opens the property in Google Maps so you can check commute times, tube stops, and nearby amenities instantly.</div>
         </div>
       </div>
       <div class="sf-list-row">
         <div class="sf-icon-box glyph-blue">
           <svg viewBox="0 0 24 24">
-            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-            <polyline points="22,6 12,13 2,6"/>
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+            <polyline points="9 22 9 12 15 12 15 22"/>
           </svg>
         </div>
         <div class="sf-row-content">
-          <div class="sf-row-title">Direct Email</div>
-          <div class="sf-row-desc">Tap the email on any listing to open your mail app pre-filled and ready to send. No copy-pasting, no third-party inbox.</div>
+          <div class="sf-row-title">Full Street Address Shown Upfront</div>
+          <div class="sf-row-desc">No vague "North London" descriptions. Every listing shows the complete street address before you even contact the host.</div>
         </div>
       </div>
       <div class="sf-list-row">
         <div class="sf-icon-box glyph-green">
           <svg viewBox="0 0 24 24">
-            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-            <path d="M9 12l2 2 4-4"/>
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="2" y1="12" x2="22" y2="12"/>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
           </svg>
         </div>
         <div class="sf-row-content">
-          <div class="sf-row-title">Verified Hosts Only</div>
-          <div class="sf-row-desc">You'll never reach a bot or agency inbox. Every contact detail belongs to a real, email-verified property owner.</div>
+          <div class="sf-row-title">Plan Your Commute Before Moving</div>
+          <div class="sf-row-desc">Use the Maps link to check walking distance to tube stations, bus routes, and your workplace before committing to a viewing.</div>
         </div>
       </div>
     </div>
 
-    <!-- CREATE ACCOUNT -->
-    <p class="sf-section-label">Create your account to contact hosts</p>
-    <div class="sf-form-card contact-auth-card">
-      <div class="sf-input-wrapper">
-        <input type="email" id="email" class="sf-input-field" placeholder=" " required>
-        <label class="sf-floating-label">Email Address</label>
-      </div>
-      <div class="sf-input-wrapper">
-        <input type="password" id="password" class="sf-input-field" placeholder=" " required>
-        <label class="sf-floating-label">Create Password</label>
-      </div>
-      <button class="sf-action-btn" id="registerBtn" onclick="signUp()">Register &amp; Verify Email</button>
-      <p id="status" class="contact-status-msg"></p>
-      <p class="contact-login-link">Already have an account? <a href="login.html">Login</a></p>
-    </div>
-
     <!-- TIP -->
-    <div class="tip" style="margin-top: 32px;">
+    <div class="tip">
       <svg class="sf-tip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
       </svg>
-      <p>Once registered, every listing on NestMate shows the host's phone number and email directly on the property card — no middleman ever involved.</p>
+      <p>Every listing on NestMate includes a direct <strong>Open in Google Maps</strong> link on the property card. Click it to see the exact location before you contact the host.</p>
     </div>
 
   </div>
 
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-    import { getAuth, createUserWithEmailAndPassword, sendEmailVerification, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-    import { getFirestore, collection, getDocs, query } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
-
-    const firebaseConfig = {
-      apiKey: "AIzaSyDTxyr3zJGsyfmdztvfFz8aw9XSyPCNeQM",
-      authDomain: "nestmate-ai.firebaseapp.com",
-      projectId: "nestmate-ai",
-      storageBucket: "nestmate-ai.firebasestorage.app",
-      messagingSenderId: "7053398074",
-      appId: "1:7053398074:web:13dc18b49402d95107a503"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-    const db = getFirestore(app);
-
-    // If already logged in and verified, skip register
-    onAuthStateChanged(auth, (user) => {
-      if (user && user.emailVerified) {
-        window.location.replace("index.html");
-      }
-    });
-
-    // Load live host count into stat pill
-    async function loadHostCount() {
-      try {
-        const snapshot = await getDocs(query(collection(db, "properties")));
-        const uniqueHosts = new Set();
-        snapshot.forEach(doc => {
-          if (doc.data().userId) uniqueHosts.add(doc.data().userId);
-        });
-        const el = document.getElementById('hostCount');
-        if (el) el.textContent = uniqueHosts.size;
-      } catch (err) {
-        console.error("Host count error:", err);
-      }
-    }
-    loadHostCount();
-
-    window.signUp = async function() {
-      const email  = document.getElementById('email').value.trim();
-      const pass   = document.getElementById('password').value;
-      const status = document.getElementById('status');
-      const btn    = document.getElementById('registerBtn');
-
-      if (!email || !pass) {
-        status.textContent = "Please fill in both fields.";
-        status.style.color = "var(--apple-red)";
-        return;
-      }
-
-      btn.disabled = true;
-      btn.textContent = 'Creating account…';
-
-      try {
-        await createUserWithEmailAndPassword(auth, email, pass);
-        await sendEmailVerification(auth.currentUser);
-        status.textContent = "✓ Check your email for a verification link, then login!";
-        status.style.color = "var(--apple-green)";
-        btn.textContent = 'Done! Check your email';
-      } catch (error) {
-        const messages = {
-          'auth/email-already-in-use': 'An account already exists with this email.',
-          'auth/weak-password': 'Password must be at least 6 characters.',
-          'auth/invalid-email': 'Please enter a valid email address.'
-        };
-        status.textContent = messages[error.code] || error.message;
-        status.style.color = "var(--apple-red)";
-        btn.disabled = false;
-        btn.textContent = 'Register & Verify Email';
-      }
-    };
-  </script>
+  <script src="src/features.js" type="module"></script>
 
 </body>
 </html>
