@@ -6,61 +6,51 @@
   <title>Savings Calculator — NestMate AI</title>
   <link rel="stylesheet" href="src/style.css">
 </head>
-<body style="background: #f5f5f7; margin: 0; padding: 0;">
+<body>
+  <div class="page">
+    <a href="index.html" class="back-btn">← Back to NestMate</a>
+    <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800" class="hero-img" alt="Save money">
+    <h1>How much could you save?</h1>
+    <p class="subtitle">Rent a 3-bed house, fill the spare rooms, and let your tenants cover most of your rent. Use the calculator below.</p>
 
-  <div style="max-width: 620px; margin: 0 auto; padding: 60px 24px; box-sizing: border-box;">
-    
-    <a href="index.html" class="sf-back-link">← Back to NestMate</a>
-    
-    <div style="margin: 32px 0 40px 0;">
-      <h1 style="font-size: 34px; font-weight: 800; letter-spacing: -0.04em; color: var(--text); margin: 0 0 10px 0;">How much could you save?</h1>
-      <p style="font-size: 16px; color: var(--muted); line-height: 1.5; margin: 0;">Rent a multi-room house, fill your spare spaces, and watch your housing costs disappear. Use our lease optimization metrics below.</p>
-    </div>
+    <div class="calc-card">
+      <p class="calc-label">Your monthly rent (£)</p>
+      <input type="number" class="calc-input" id="totalRent" value="2000">
 
-    <div class="sf-form-card" style="box-shadow: 0 4px 20px rgba(0,0,0,0.04); padding: 32px;">
-      
-      <div class="sf-input-wrapper">
-        <input class="sf-input-field" id="calcTotalRent" value="2000" placeholder=" " type="number">
-        <label class="sf-floating-label">Your Target Monthly Lease (£)</label>
-      </div>
-
-      <div class="sf-section-label" style="margin: 24px 0 4px 4px;">Spare Rooms Subletted</div>
-      <div class="sf-slider-container">
-        <input type="range" min="1" max="4" value="2" id="calcRooms" class="sf-range-slider">
-        <div class="sf-slider-meta">
-          <span>1 Space</span>
-          <span id="calcRoomVal" style="color: var(--accent); font-weight: 600;">2 Spaces</span>
-          <span>4 Spaces</span>
+      <p class="calc-label" style="margin-top:24px;">Number of spare rooms you'll rent out</p>
+      <div class="slider-wrap">
+        <input type="range" min="1" max="4" value="2" id="rooms">
+        <div style="display:flex; justify-content:space-between; margin-top:4px;">
+          <span style="font-size:0.85rem; color:#86868b;">1 room</span>
+          <span class="slider-val" id="roomVal">2 rooms</span>
+          <span style="font-size:0.85rem; color:#86868b;">4 rooms</span>
         </div>
       </div>
 
-      <div class="sf-input-wrapper" style="margin-top: 24px;">
-        <input class="sf-input-field" id="calcRoomRent" value="150" placeholder=" " type="number">
-        <label class="sf-floating-label">Weekly Rent Per Sub-Tenant (£)</label>
+      <p class="calc-label" style="margin-top:24px;">Weekly rent per room (£)</p>
+      <input type="number" class="calc-input" id="roomRent" value="150">
+
+      <div class="result-grid">
+        <div class="result-box">
+          <p class="r-label">Monthly income</p>
+          <p class="r-val" id="income">£1,300</p>
+        </div>
+        <div class="result-box highlight">
+          <p class="r-label">You pay</p>
+          <p class="r-val" id="youPay">£700</p>
+        </div>
+        <div class="result-box highlight" style="grid-column:1/-1; background:#1d1d1f;">
+          <p class="r-label">You save per year</p>
+          <p class="r-val" id="yearSave">£15,600</p>
+        </div>
       </div>
 
-      <div class="sf-calc-grid">
-        <div class="sf-calc-box">
-          <div class="sf-calc-lbl">Sublet Income</div>
-          <div class="sf-calc-val" id="resIncome">£0</div>
-        </div>
-        <div class="sf-calc-box highlight">
-          <div class="sf-calc-lbl">Net Cost To You</div>
-          <div class="sf-calc-val" id="resYouPay">£0</div>
-        </div>
-        <div class="sf-calc-box hero-dark">
-          <div class="sf-calc-lbl">Annualized Balance Saved</div>
-          <div class="sf-calc-val" id="resYearSave">£0</div>
-        </div>
-      </div>
-
-      <div class="sf-tip-callout">
-        <p>💡 With <span id="tipBoxRooms">2</span> spaces rented at £<span id="tipBoxRent">150</span>/wk, your sublets cover <span id="tipBoxPercent">0</span>% of your overhead.</p>
+      <div class="tip">
+        <p>💡 With <span id="tipRooms">2</span> rooms at £<span id="tipRent">150</span>/week, your tenants cover <span id="tipPercent">65</span>% of your rent — you keep the rest.</p>
       </div>
     </div>
-
   </div>
 
-  <script src="src/feature.js"></script>
+  <script type="module" src="src/feature.js"></script>
 </body>
 </html>
