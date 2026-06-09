@@ -68,5 +68,44 @@ document.addEventListener('DOMContentLoaded', () => {
   if (submitBtn) {
     loadVerifiedHostCount();
     submitBtn.addEventListener('click', submitReport);
+    // ── NESTMATE SAVINGS CALCULATOR CONTROLLER ENGINE ──
+document.addEventListener("DOMContentLoaded", () => {
+  const inputRent = document.getElementById('calcTotalRent');
+  const inputRooms = document.getElementById('calcRooms');
+  const inputWeekly = document.getElementById('calcRoomRent');
+
+  // Guard clause to make sure script only runs if calculator variables exist on page
+  if (!inputRent || !inputRooms || !inputWeekly) return;
+
+  const calculateLeaseOptimization = () => {
+    const totalRent = parseFloat(inputRent.value) || 0;
+    const rooms = parseInt(inputRooms.value) || 1;
+    const roomRent = parseFloat(inputWeekly.value) || 0;
+
+    // Financial formulas (4.33 weeks per average month)
+    const monthlyIncome = Math.round(rooms * roomRent * 4.33);
+    const netCost = Math.max(0, Math.round(totalRent - monthlyIncome));
+    const yearSave = monthlyIncome * 12;
+    const coveragePercentage = totalRent > 0 ? Math.min(100, Math.round((monthlyIncome / totalRent) * 100)) : 0;
+
+    // DOM Value Binding Updates
+    document.getElementById('resIncome').textContent = '£' + monthlyIncome.toLocaleString();
+    document.getElementById('resYouPay').textContent = '£' + netCost.toLocaleString();
+    document.getElementById('resYearSave').textContent = '£' + yearSave.toLocaleString();
+    
+    document.getElementById('tipBoxRooms').textContent = rooms;
+    document.getElementById('tipBoxRent').textContent = roomRent;
+    document.getElementById('tipBoxPercent').textContent = coveragePercentage;
+    document.getElementById('calcRoomVal').textContent = rooms + (rooms > 1 ? ' Spaces' : ' Space');
+  };
+
+  // Attach continuous event monitors
+  inputRent.addEventListener('input', calculateLeaseOptimization);
+  inputRooms.addEventListener('input', calculateLeaseOptimization);
+  inputWeekly.addEventListener('input', calculateLeaseOptimization);
+
+  // Initialize view balancing calculation right away
+  calculateLeaseOptimization();
+});
   }
 });
