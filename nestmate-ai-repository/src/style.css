@@ -625,3 +625,52 @@ body {
 .cta p { color: rgba(255,255,255,0.55); font-size: 13px; margin-bottom: 20px; line-height: 1.5; }
 .cta-btn { display: inline-block; background: #0071e3; color: #fff; padding: 12px 28px; border-radius: 12px; font-size: 14px; font-weight: 600; text-decoration: none; border: none; cursor: pointer; font-family: inherit; transition: opacity 0.2s; }
 .cta-btn:hover { opacity: 0.9; }
+/* ── NESTMATE PREMIUM POPUP MULTI-FILE HOOKS ── */
+.extended-card {
+  max-width: 640px !important;
+  padding: 30px 24px 20px 24px !important;
+}
+
+.popup-scroll-container {
+  max-height: 70vh;
+  overflow-y: auto;
+  padding-right: 6px;
+  margin-bottom: 16px;
+}
+
+/* Custom Scrollbar styling for native Apple visual feel */
+.popup-scroll-container::-webkit-scrollbar { width: 6px; }
+.popup-scroll-container::-webkit-scrollbar-track { background: transparent; }
+.popup-scroll-container::-webkit-scrollbar-thumb { background: #d2d2d7; border-radius: 10px; }
+
+/* Subpage Component Adaptations */
+.modal-hero { margin-bottom: 24px; text-align: left; }
+.modal-hero h1 { font-size: 26px; font-weight: 800; letter-spacing: -0.03em; color: #1d1d1f; margin: 0 0 6px 0; line-height: 1.2; }
+.modal-hero p { font-size: 14px; color: #86868b; margin: 0; }
+
+.m-stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 24px; }
+.m-stat { background: #fff; border: 0.5px solid #e5e5ea; border-radius: 14px; padding: 14px 10px; text-align: center; }
+.m-stat-num { font-size: 20px; font-weight: 700; color: #1d1d1f; letter-spacing: -0.02em; }
+.m-stat-live { color: #34c759; display: flex; align-items: center; justify-content: center; gap: 4px; }
+.m-live-dot { width: 7px; height: 7px; background: #34c759; border-radius: 50%; animation: pulse 1.5s infinite; }
+.m-stat-lbl { font-size: 11px; color: #86868b; margin-top: 4px; line-height: 1.3; }
+
+.m-label { font-size: 11px; font-weight: 700; color: #86868b; text-transform: uppercase; letter-spacing: 0.06em; margin: 20px 0 10px 0; }
+
+.m-trust-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px; }
+.m-trust-item { background: #fff; border: 0.5px solid #e5e5ea; border-radius: 16px; padding: 16px; display: flex; gap: 12px; }
+.m-t-icon { width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 16px; }
+.m-t-icon.green { background: #e8f5e9; }
+.m-t-icon.blue { background: #e3f2fd; }
+.m-t-title { font-size: 14px; font-weight: 600; color: #1d1d1f; margin-bottom: 2px; }
+.m-t-desc { font-size: 13px; color: #86868b; line-height: 1.4; }
+
+/* Interactive Form Mechanics inside Popups */
+.m-report-card { background: #fff; border: 0.5px solid #e5e5ea; border-radius: 18px; padding: 18px; }
+.m-r-input, .m-r-select { width: 100%; padding: 11px 14px; border-radius: 10px; border: 0.5px solid #d2d2d7; font-size: 14px; font-family: inherit; margin-bottom: 10px; box-sizing: border-box; background: #fff; outline: none; }
+.m-r-input:focus, .m-r-select:focus { border-color: #0071e3; }
+.m-r-btn { width: 100%; padding: 12px; background: #ff3b30; color: #fff; border: none; border-radius: 10px; font-size: 14px; font-weight: 600; cursor: pointer; transition: opacity 0.2s; }
+.m-r-btn:hover { opacity: 0.9; }
+.m-r-btn:disabled { opacity: 0.4; pointer-events: none; }
+
+.m-success { display: none; background: #e8f5e9; color: #2e7d32; padding: 12px; border-radius: 10px; font-size: 13px; font-weight: 600; text-align: center; margin-top: 10px; }
