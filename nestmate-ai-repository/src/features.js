@@ -13,7 +13,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// --- CARD 1 FEATURE CODE ---
+// ── CARD 1: VERIFIED HOST & REPORT FEATURE CODE ──
 async function loadVerifiedHostCount() {
   try {
     const q = query(collection(db, "properties"));
@@ -62,19 +62,13 @@ async function submitReport(event) {
   }
 }
 
-// --- CENTRAL FEATURE ROUTER ROUTINES ---
-document.addEventListener('DOMContentLoaded', () => {
-  const submitBtn = document.getElementById('submitReportBtn');
-  if (submitBtn) {
-    loadVerifiedHostCount();
-    submitBtn.addEventListener('click', submitReport);
-    // ── NESTMATE SAVINGS CALCULATOR CONTROLLER ENGINE ──
-document.addEventListener("DOMContentLoaded", () => {
+// ── CARD 2: SAVINGS CALCULATOR MODULE LOGIC ──
+function initializeSavingsCalculator() {
   const inputRent = document.getElementById('calcTotalRent');
   const inputRooms = document.getElementById('calcRooms');
   const inputWeekly = document.getElementById('calcRoomRent');
 
-  // Guard clause to make sure script only runs if calculator variables exist on page
+  // Guard clause: Stop if these element IDs are missing (meaning we are not on savings.html)
   if (!inputRent || !inputRooms || !inputWeekly) return;
 
   const calculateLeaseOptimization = () => {
@@ -82,13 +76,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const rooms = parseInt(inputRooms.value) || 1;
     const roomRent = parseFloat(inputWeekly.value) || 0;
 
-    // Financial formulas (4.33 weeks per average month)
+    // Financial calculations (4.33 weeks per average month)
     const monthlyIncome = Math.round(rooms * roomRent * 4.33);
     const netCost = Math.max(0, Math.round(totalRent - monthlyIncome));
     const yearSave = monthlyIncome * 12;
     const coveragePercentage = totalRent > 0 ? Math.min(100, Math.round((monthlyIncome / totalRent) * 100)) : 0;
 
-    // DOM Value Binding Updates
+    // DOM Value Binder Layer updates
     document.getElementById('resIncome').textContent = '£' + monthlyIncome.toLocaleString();
     document.getElementById('resYouPay').textContent = '£' + netCost.toLocaleString();
     document.getElementById('resYearSave').textContent = '£' + yearSave.toLocaleString();
@@ -99,13 +93,25 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById('calcRoomVal').textContent = rooms + (rooms > 1 ? ' Spaces' : ' Space');
   };
 
-  // Attach continuous event monitors
+  // Event monitors tracking user runtime slide/typing interactions
   inputRent.addEventListener('input', calculateLeaseOptimization);
   inputRooms.addEventListener('input', calculateLeaseOptimization);
   inputWeekly.addEventListener('input', calculateLeaseOptimization);
 
-  // Initialize view balancing calculation right away
+  // Compute values immediately on engine startup
   calculateLeaseOptimization();
-});
+}
+
+// ── CENTRAL ROUTER LIFECYCLE INITIALIZER ──
+document.addEventListener('DOMContentLoaded', () => {
+  
+  // 1. Check if we're on the Verified Listings/Reporting Frame
+  const submitBtn = document.getElementById('submitReportBtn');
+  if (submitBtn) {
+    loadVerifiedHostCount();
+    submitBtn.addEventListener('click', submitReport);
   }
+
+  // 2. Check if we're on the Standalone Savings Page Frame
+  initializeSavingsCalculator();
 });
