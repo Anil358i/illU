@@ -45,7 +45,7 @@
         window.location.href = "login.html";
       }
     });
-    // ── NESTMATE VERIFIED POPUP CONTROLLER ENGINE ──
+
     // ── NESTMATE PREMIUM NATIVE APPLE-THEME OVERLAY ENGINE ──
     window.showVerifiedModal = async function() {
       const contentDiv = document.getElementById('popupDynamicContent');
@@ -138,6 +138,7 @@
       `;
 
       backdrop.style.display = 'flex';
+      document.body.classList.add('modal-open'); // Added background freeze hook here
 
       try {
         const snapshot = await window.dbTools.getDocs(window.dbTools.collection(window.db, "properties"));
@@ -156,7 +157,10 @@
 
     window.closePopup = function() {
       const backdrop = document.getElementById('popupBackdrop');
-      if (backdrop) backdrop.style.display = 'none';
+      if (backdrop) {
+        backdrop.style.display = 'none';
+        document.body.classList.remove('modal-open'); // Added background restoration hook here
+      }
     };
 
     async function submitModalReport(e) {
@@ -204,7 +208,6 @@
     <p>Connecting...</p>
   </div>
 
-  <!-- VIDEO MODAL -->
   <div id="videoModal" class="video-modal-backdrop" onclick="closeVideoModal(event)">
     <div class="video-modal-card">
       <button class="video-close-btn" onclick="closeVideoModal()">&#x2715;</button>
@@ -227,21 +230,18 @@
     </div>
   </div>
 
-  <!-- POPUP MODAL -->
   <div id="popupBackdrop" class="popup-backdrop" onclick="closePopup()">
     <div class="popup-card extended-card" onclick="event.stopPropagation()">
       <span class="close-x" onclick="closePopup()">&times;</span>
       
       <div class="popup-scroll-container">
-        <div id="popupDynamicContent">
-          </div>
+        <div id="popupDynamicContent"></div>
       </div>
       
       <button class="apple-btn-black" onclick="closePopup()">Done</button>
     </div>
   </div>
 
-  <!-- MY LISTINGS MODAL -->
   <div id="myListingsModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.5); backdrop-filter:blur(10px); z-index:3000; align-items:center; justify-content:center; padding:20px;">
     <div style="background:white; width:100%; max-width:600px; border-radius:28px; padding:30px; max-height:80vh; overflow-y:auto; position:relative;">
       <h2 style="margin-top:0; font-weight:800; letter-spacing:-0.03em;">My Listings</h2>
@@ -261,7 +261,6 @@
     </div>
   </div>
 
-  <!-- PROPERTY DETAIL MODAL -->
   <div id="propertyDetailModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.6); backdrop-filter:blur(20px); z-index:4000; align-items:center; justify-content:center; padding:20px;">
     <div style="background:white; width:100%; max-width:540px; border-radius:32px; overflow:hidden; position:relative; max-height:92vh; overflow-y:auto; box-shadow:0 40px 80px rgba(0,0,0,0.3);">
       <button onclick="closePropertyDetail()" style="position:absolute; top:16px; right:16px; z-index:10; background:rgba(0,0,0,0.45); backdrop-filter:blur(10px); border:none; color:white; width:34px; height:34px; border-radius:50%; font-size:16px; cursor:pointer; display:flex; align-items:center; justify-content:center;">✕</button>
@@ -354,49 +353,49 @@
         </div>
       </section>
 
-      <!-- WHY NESTMATE SECTION -->
-<section class="why-section fade-in">
-  <h2 class="why-heading">Why NestMate?</h2>
-  <div class="why-carousel">
+      <section class="why-section fade-in">
+        <h2 class="why-heading">Why NestMate?</h2>
+        <div class="why-carousel">
 
-    <div class="why-card" onclick="showVerifiedModal()" style="cursor:pointer;">
-      <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=600" class="why-card-img">
-      <div class="why-card-content">
-        <p class="why-label">Verified Listings</p>
-        <h3 class="why-title">Real homes.<br>Real hosts.</h3>
-        <p class="why-desc">Every property is posted by a verified host with direct contact details.</p>
-      </div>
-    </div>
+          <div class="why-card" onclick="showVerifiedModal()" style="cursor:pointer;">
+            <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=600" class="why-card-img">
+            <div class="why-card-content">
+              <p class="why-label">Verified Listings</p>
+              <h3 class="why-title">Real homes.<br>Real hosts.</h3>
+              <p class="why-desc">Every property is posted by a verified host with direct contact details.</p>
+            </div>
+          </div>
 
-    <div class="why-card" onclick="window.location.href='savings.html'" style="cursor:pointer;">
-      <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=600" class="why-card-img">
-      <div class="why-card-content">
-        <p class="why-label">Save Money</p>
-        <h3 class="why-title">Live for<br>almost free.</h3>
-        <p class="why-desc">Rent a 3-bed house, fill spare rooms and save up to £1,800 a month.</p>
-      </div>
-    </div>
+          <div class="why-card" onclick="window.location.href='savings.html'" style="cursor:pointer;">
+            <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=600" class="why-card-img">
+            <div class="why-card-content">
+              <p class="why-label">Save Money</p>
+              <h3 class="why-title">Live for<br>almost free.</h3>
+              <p class="why-desc">Rent a 3-bed house, fill spare rooms and save up to £1,800 a month.</p>
+            </div>
+          </div>
 
-    <div class="why-card" onclick="window.location.href='contact.html'" style="cursor:pointer;">
-      <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=600" class="why-card-img">
-      <div class="why-card-content">
-        <p class="why-label">Instant Contact</p>
-        <h3 class="why-title">One tap<br>to connect.</h3>
-        <p class="why-desc">Message any host instantly via WhatsApp or email directly from the listing.</p>
-      </div>
-    </div>
+          <div class="why-card" onclick="window.location.href='contact.html'" style="cursor:pointer;">
+            <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=600" class="why-card-img">
+            <div class="why-card-content">
+              <p class="why-label">Instant Contact</p>
+              <h3 class="why-title">One tap<br>to connect.</h3>
+              <p class="why-desc">Message any host instantly via WhatsApp or email directly from the listing.</p>
+            </div>
+          </div>
 
-    <div class="why-card" onclick="window.location.href='map.html'" style="cursor:pointer;">
-      <img src="https://raw.githubusercontent.com/Anil358i/Nestmate.ai/main/image.jpg" class="why-card-img">
-      <div class="why-card-content">
-        <p class="why-label">Find Your Way</p>
-        <h3 class="why-title">Every listing<br>on the map.</h3>
-        <p class="why-desc">Every property includes a Google Maps link so you know exactly where it is.</p>
-      </div>
-    </div>
+          <div class="why-card" onclick="window.location.href='map.html'" style="cursor:pointer;">
+            <img src="https://raw.githubusercontent.com/Anil358i/Nestmate.ai/main/image.jpg" class="why-card-img">
+            <div class="why-card-content">
+              <p class="why-label">Find Your Way</p>
+              <h3 class="why-title">Every listing<br>on the map.</h3>
+              <p class="why-desc">Every property includes a Google Maps link so you know exactly where it is.</p>
+            </div>
+          </div>
 
-  </div>
-</section>
+        </div>
+      </section>
+
       <section class="explore-section fade-in" id="explore" style="text-align:center;">
         <h2>Available Listings</h2>
         <div class="toggle-group">
