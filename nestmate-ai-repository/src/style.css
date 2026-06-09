@@ -1,5 +1,5 @@
 /* ==========================================================================
-   ── APPLE DESIGN SYSTEM VARIABLES ──
+   ── APPLE INTEGRATED DESIGN SYSTEM VARIABLES ──
    ========================================================================== */
 :root {
   --bg: #f5f5f7;
@@ -13,10 +13,11 @@
   --radius-pill: 99px;
   --accent: #0071e3;
   --apple-red: #ff3b30;
+  --apple-green: #34c759;
 }
 
 /* ==========================================================================
-   ── BASE RESET & SAN FRANCISCO TYPOGRAPHY ──
+   ── BASE RESET & SAN FRANCISCO SYSTEM TYPOGRAPHY ──
    ========================================================================== */
 * { 
   box-sizing: border-box; 
@@ -28,21 +29,20 @@ html {
 }
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "SF Pro", "Helvetica Neue", sans-serif;
   color: var(--text);
   background: var(--bg);
   line-height: 1.47;
   overflow-x: hidden;
 }
 
-/* Background Scroll Lock Helper */
 body.modal-open {
   overflow: hidden !important;
   height: 100vh !important;
 }
 
 /* ==========================================================================
-   ── FULL WIDTH NAVIGATION HEADER ──
+   ── FULL WIDTH FIXED NAVIGATION HEADER ──
    ========================================================================== */
 .site-header {
   position: sticky;
@@ -53,7 +53,6 @@ body.modal-open {
   background: rgba(245, 245, 247, 0.7);
   border-bottom: 1px solid var(--line);
 }
-
 .nav-inner {
   width: 100%;
   padding: 12px 40px;
@@ -61,14 +60,12 @@ body.modal-open {
   align-items: center;
   justify-content: space-between;
 }
-
 .logo { 
   font-weight: 700; 
   font-size: 1.3rem; 
   letter-spacing: -0.03em; 
   flex-shrink: 0; 
 }
-
 .nav-links { 
   display: flex; 
   gap: 32px; 
@@ -76,7 +73,6 @@ body.modal-open {
   left: 50%; 
   transform: translateX(-50%); 
 }
-
 .nav-links a { 
   color: var(--text); 
   text-decoration: none; 
@@ -136,7 +132,6 @@ body.modal-open {
   color: var(--apple-red); 
   font-weight: 500; 
 }
-
 .dropdown-item[onclick="deleteUserListings()"]:hover {
   background-color: rgba(255, 59, 48, 0.1);
   color: #d70015 !important;
@@ -156,7 +151,6 @@ body.modal-open {
   align-items: center; 
   justify-content: center;
 }
-
 .popup-card {
   background: var(--surface-solid); 
   width: 90%; 
@@ -166,7 +160,6 @@ body.modal-open {
   position: relative; 
   box-shadow: 0 30px 60px rgba(0,0,0,0.12);
 }
-
 .close-x {
   position: absolute; 
   top: 18px; 
@@ -177,13 +170,9 @@ body.modal-open {
   z-index: 10;
   transition: color 0.2s;
 }
-.close-x:hover {
-  color: var(--text);
-}
+.close-x:hover { color: var(--text); }
 
-/* ==========================================================================
-   ── PREMIUM INTERACTIVE EXTENDED MODAL ──
-   ========================================================================== */
+/* Extended Premium Architecture Layout Cards */
 .extended-card {
   max-width: 760px;
   width: 92%;
@@ -194,13 +183,7 @@ body.modal-open {
   border-radius: 36px;
   padding: 40px 36px 30px 36px;
 }
-
-/* Hard San Francisco alignment rule override */
-.extended-card,
-.extended-card * {
-  text-align: left;
-}
-
+.extended-card, .extended-card * { text-align: left; }
 .popup-scroll-container {
   max-height: 72vh;
   overflow-y: auto;
@@ -209,9 +192,10 @@ body.modal-open {
   margin-bottom: 24px;
 }
 
-.sf-modal-hero { 
-  margin-bottom: 28px; 
-}
+/* ==========================================================================
+   ── UNIFIED SAN FRANCISCO COMPONENT TEXT TRACKS ──
+   ========================================================================== */
+.sf-modal-hero { margin-bottom: 28px; }
 .sf-modal-hero h1 { 
   font-size: 28px; 
   font-weight: 700; 
@@ -228,7 +212,7 @@ body.modal-open {
   font-weight: 400; 
 }
 
-/* Segmented Metrics Engine */
+/* Segmented Live Activity Track Pill Panels */
 .sf-stats-grid { 
   display: grid; 
   grid-template-columns: repeat(3, 1fr); 
@@ -249,7 +233,7 @@ body.modal-open {
   letter-spacing: -0.03em; 
 }
 .sf-stat-num.live-accent { 
-  color: #34c759; 
+  color: var(--apple-green); 
   display: flex; 
   align-items: center; 
   justify-content: center; 
@@ -258,7 +242,7 @@ body.modal-open {
 .sf-pulse-dot { 
   width: 6px; 
   height: 6px; 
-  background: #34c759; 
+  background: var(--apple-green); 
   border-radius: 50%; 
   animation: sfPulse 1.6s infinite ease-in-out; 
 }
@@ -276,13 +260,13 @@ body.modal-open {
 }
 
 /* ==========================================================================
-   ── AUTHENTIC COHESIVE SYSTEM FEATURE ROW LAYOUT ──
+   ── AUTHENTIC SYSTEM PLATFORM LIST SECTION CORES ──
    ========================================================================== */
 .sf-section-label { 
-  font-size: 12px; 
+  font-size: 11px; 
   font-weight: 600; 
   text-transform: uppercase; 
-  letter-spacing: 0.05em; 
+  letter-spacing: 0.06em; 
   color: var(--muted); 
   margin: 32px 0 10px 4px; 
 }
@@ -301,9 +285,7 @@ body.modal-open {
   gap: 16px; 
   padding: 16px 0; 
 }
-.sf-list-row:not(:last-child) {
-  border-bottom: 0.5px solid rgba(0, 0, 0, 0.06);
-}
+.sf-list-row:not(:last-child) { border-bottom: 0.5px solid rgba(0, 0, 0, 0.06); }
 
 .sf-icon-box { 
   width: 32px; 
@@ -317,36 +299,14 @@ body.modal-open {
 }
 .sf-icon-box.glyph-green { background: rgba(52, 199, 89, 0.14); color: #24b23e; }
 .sf-icon-box.glyph-blue { background: rgba(0, 113, 227, 0.12); color: var(--accent); }
-.sf-icon-box svg { 
-  width: 18px; 
-  height: 18px; 
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 2.2; 
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
+.sf-icon-box svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
 
-.sf-row-content { 
-  display: flex; 
-  flex-direction: column; 
-  gap: 2px;
-}
-.sf-row-title { 
-  font-size: 15px; 
-  font-weight: 600; 
-  color: var(--text); 
-  letter-spacing: -0.015em;
-}
-.sf-row-desc { 
-  font-size: 13px; 
-  color: var(--muted); 
-  line-height: 1.4; 
-  letter-spacing: -0.005em;
-}
+.sf-row-content { display: flex; flex-direction: column; gap: 2px; }
+.sf-row-title { font-size: 15px; font-weight: 600; color: var(--text); letter-spacing: -0.015em; }
+.sf-row-desc { font-size: 13px; color: var(--muted); line-height: 1.4; letter-spacing: -0.005em; }
 
 /* ==========================================================================
-   ── iOS FORMS & INTERACTIVE FLOATING ELEMENTS ──
+   ── NATIVE FORM LAYER & FLOATING ELEMENTS ──
    ========================================================================== */
 .sf-form-card { 
   background: rgba(255, 255, 255, 0.5); 
@@ -354,10 +314,7 @@ body.modal-open {
   border-radius: 18px; 
   padding: 16px; 
 }
-.sf-input-wrapper { 
-  position: relative; 
-  margin-bottom: 12px; 
-}
+.sf-input-wrapper { position: relative; margin-bottom: 12px; }
 .sf-input-field, .sf-select-field { 
   width: 100%; 
   padding: 14px 12px 6px 12px; 
@@ -377,11 +334,8 @@ body.modal-open {
   background-repeat: no-repeat; 
   background-position: right 12px center;
 }
-.sf-input-field:focus, .sf-select-field:focus { 
-  border-color: var(--accent); 
-}
+.sf-input-field:focus, .sf-select-field:focus { border-color: var(--accent); }
 
-/* Floating Label Animation Engine */
 .sf-floating-label {
   position: absolute; 
   left: 12px; 
@@ -402,7 +356,6 @@ body.modal-open {
   color: var(--accent);
 }
 
-/* Primary Action Controllers */
 .sf-action-btn { 
   width: 100%; 
   padding: 14px; 
@@ -450,7 +403,157 @@ body.modal-open {
 }
 
 /* ==========================================================================
-   ── BOLD HERO STAGE ──
+   ── STANDALONE SAVINGS CALCULATOR PAGE INTERACTION HOOKS ──
+   ========================================================================== */
+.page { 
+  max-width: 680px; 
+  margin: 0 auto; 
+  padding: 60px 24px; 
+}
+.back-btn { 
+  display: inline-flex; 
+  align-items: center; 
+  gap: 6px; 
+  color: var(--accent); 
+  font-weight: 600; 
+  font-size: 0.95rem; 
+  text-decoration: none; 
+  margin-bottom: 40px; 
+  transition: opacity 0.15s ease;
+}
+.back-btn:hover { opacity: 0.7; }
+.back-btn svg.sf-icon { width: 16px; height: 16px; }
+
+.hero-img { 
+  width: 100%; 
+  height: 280px; 
+  object-fit: cover; 
+  border-radius: 24px; 
+  margin-bottom: 32px; 
+}
+h1 { font-size: 2.2rem; font-weight: 800; letter-spacing: -0.04em; margin: 0 0 12px 0; line-height: 1.15; }
+.subtitle { color: var(--muted); font-size: 1.05rem; margin: 0 0 40px 0; line-height: 1.5; letter-spacing: -0.01em; }
+
+.calc-card { 
+  background: var(--surface-solid); 
+  border-radius: 24px; 
+  padding: 32px; 
+  margin-bottom: 24px; 
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+.calc-label { 
+  font-size: 0.75rem; 
+  font-weight: 700; 
+  color: var(--muted); 
+  text-transform: uppercase; 
+  letter-spacing: 0.06em; 
+  margin: 24px 0 8px 2px; 
+}
+.calc-label:first-of-type { margin-top: 0; }
+
+.calc-input { 
+  width: 100%; 
+  padding: 14px 16px; 
+  border-radius: 12px; 
+  border: 1.5px solid #e0e0e0; 
+  font-size: 1rem; 
+  outline: none; 
+  box-sizing: border-box; 
+  transition: border-color 0.2s, box-shadow 0.2s; 
+  color: var(--text);
+  font-family: inherit;
+}
+.calc-input:focus { 
+  border-color: var(--accent); 
+  box-shadow: 0 0 0 3px rgba(0, 113, 227, 0.15);
+}
+
+/* Custom Native Look Range Slider Component Blueprint */
+.slider-wrap { margin: 12px 0 8px; }
+.slider-wrap input[type=range] { 
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%; 
+  accent-color: var(--accent); 
+  height: 4px; 
+  background: rgba(0, 0, 0, 0.08);
+  border-radius: 2px;
+  outline: none;
+}
+.slider-wrap input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 0.5px solid rgba(0, 0, 0, 0.15);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  transition: transform 0.1s;
+}
+.slider-wrap input[type=range]::-webkit-slider-thumb:active {
+  transform: scale(1.12);
+}
+.slider-meta { 
+  display: flex; 
+  justify-content: space-between; 
+  margin-top: 10px; 
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+.meta-label { color: var(--muted); }
+.slider-val { font-size: 1.1rem; font-weight: 700; color: var(--accent); letter-spacing: -0.01em; }
+
+/* Dynamic Vector Financial Optimization Grid Frame */
+.result-grid { 
+  display: grid; 
+  grid-template-columns: repeat(2, 1fr); 
+  gap: 16px; 
+  margin-top: 32px; 
+}
+.result-box { 
+  background: rgba(0, 0, 0, 0.02); 
+  border: 0.5px solid rgba(0, 0, 0, 0.04);
+  border-radius: 18px; 
+  padding: 20px; 
+  text-align: center; 
+}
+.result-box.highlight { background: var(--accent); border: none; }
+.result-box.dynamic-dark { grid-column: 1 / -1; background: #1d1d1f; border: none; padding: 24px; }
+
+.result-box .r-label { 
+  font-size: 0.7rem; 
+  font-weight: 600; 
+  text-transform: uppercase; 
+  letter-spacing: 0.06em; 
+  color: var(--muted);
+  margin: 0 0 6px 0; 
+}
+.result-box.highlight .r-label { color: rgba(255, 255, 255, 0.75); }
+.result-box.dynamic-dark .r-label { color: var(--muted); }
+
+.result-box .r-val { font-size: 1.6rem; font-weight: 800; margin: 0; color: var(--text); letter-spacing: -0.03em; }
+.result-box.highlight .r-val,
+.result-box.dynamic-dark .r-val { color: #ffffff; }
+
+/* Translucent Tip Box Callouts */
+.tip { 
+  background: rgba(52, 199, 89, 0.07); 
+  border-left: 4px solid var(--apple-green);
+  border-radius: 14px; 
+  padding: 18px 20px; 
+  margin-top: 28px; 
+  display: flex;
+  align-items: start;
+  gap: 12px;
+}
+.tip p { margin: 0; color: #1c662c; font-size: 0.92rem; font-weight: 500; line-height: 1.5; text-align: left; }
+.tip svg.sf-tip-icon { width: 18px; height: 18px; color: #248a3d; flex-shrink: 0; margin-top: 2px; }
+
+/* ==========================================================================
+   ── BOLD HERO ENVIRONMENT STAGES ──
    ========================================================================== */
 .hero-section { text-align: center; padding: 120px 24px 80px 24px; }
 .hero-title { font-size: clamp(3.5rem, 10vw, 6rem); font-weight: 800; letter-spacing: -0.05em; line-height: 1.05; margin: 0; }
@@ -458,7 +561,7 @@ body.modal-open {
 .hero-copy { font-size: 1.3rem; color: var(--muted); margin-top: 20px; }
 
 /* ==========================================================================
-   ── EXPLORE HORIZONTAL DATA CAROUSEL ──
+   ── DATA CAROUSEL FRAMEWORKS (UNIFIED PROPERTIES & HOUSES) ──
    ========================================================================== */
 .explore-section { padding: 60px 0; text-align: center; }
 .carousel-outer {
@@ -470,7 +573,6 @@ body.modal-open {
   box-sizing: border-box;
 }
 .carousel-outer::-webkit-scrollbar { display: none; }
-
 .carousel-track {
   display: flex;
   gap: 24px;
@@ -478,7 +580,6 @@ body.modal-open {
   flex-wrap: nowrap;
   width: max-content;
 }
-
 .prop-card {
   flex: 0 0 320px;
   width: 320px;
@@ -490,41 +591,24 @@ body.modal-open {
   display: flex;
   flex-direction: column;
 }
-.prop-image-wrap {
-  width: 100%;
-  height: 200px;
-  overflow: hidden;
-  position: relative;
-  background: #f0f0f2;
-}
-.prop-image-wrap img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  display: block;
-  max-width: 320px;
-  flex-shrink: 0;
-}
+.prop-image-wrap { width: 100%; height: 200px; overflow: hidden; position: relative; background: #f0f0f2; }
+.prop-image-wrap img { width: 100%; height: 100%; object-fit: contain; display: block; max-width: 320px; flex-shrink: 0; }
 .prop-info { padding: 20px; text-align: left; }
 .prop-name { font-weight: 600; font-size: 1.1rem; margin-bottom: 5px; color: var(--text); }
 .prop-price strong { font-size: 1.2rem; color: #000; }
 
-/* ==========================================================================
-   ── SYSTEM SEGMENTED PILL CONTROLS ──
-   ========================================================================== */
+/* Segmented Pill Selection Bars */
 .toggle-group { background: rgba(0,0,0,0.05); padding: 4px; border-radius: var(--radius-pill); display: inline-flex; margin: 20px 0; }
 .toggle-btn { background: transparent; border: none; padding: 8px 24px; border-radius: var(--radius-pill); cursor: pointer; color: var(--muted); font-weight: 500; }
 .toggle-btn.active { background: var(--surface-solid); color: black; font-weight: 700; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
 
-/* ==========================================================================
-   ── HOSTING MODULES ──
-   ========================================================================== */
+/* Unified Form Upload Section Containers */
 .upload-section { padding: 60px 24px; }
 .glass-card { max-width: 500px; margin: 0 auto; text-align: center; }
 .glass-card input { width: 100%; padding: 16px; margin-bottom: 12px; border-radius: 12px; border: 1px solid var(--line); outline: none; background: #fbfbfd; }
 
 /* ==========================================================================
-   ── LIVE INTERACTIVE CHAT ENVIRONMENT ──
+   ── LIVE INTERACTIVE CHAT LAYOUTS ──
    ========================================================================== */
 .demo-section { padding: 0 24px 80px; }
 .chat-wrapper { background: var(--surface-solid); border-radius: 28px; padding: 30px; box-shadow: var(--shadow); max-width: 800px; margin: 60px auto; }
@@ -541,7 +625,7 @@ body.modal-open {
 .send-btn { background: var(--accent); color: white; border: none; padding: 10px 24px; border-radius: var(--radius-pill); font-weight: 600; cursor: pointer; }
 
 /* ==========================================================================
-   ── BRAND VALUE PROPOSITION (WHY NESTMATE) ──
+   ── PRODUCT CARD VALUE ROTATION MATRICES ──
    ========================================================================== */
 .why-section { padding: 60px 0; }
 .why-heading { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800; letter-spacing: -0.04em; margin: 0 0 24px 40px; text-align: left; }
@@ -568,7 +652,7 @@ body.modal-open {
 .why-desc { font-size: 0.88rem; color: var(--muted); line-height: 1.5; margin: 0; }
 
 /* ==========================================================================
-   ── AV MEDIA & BANNER SYSTEM ──
+   ── INTEGRATED VIDEO CORE & AUDIO-VISUAL MEDIA ──
    ========================================================================== */
 .video-banner-section { padding: 20px 40px 60px; }
 .video-banner-heading { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800; letter-spacing: -0.04em; margin: 0 0 20px 0; text-align: left; }
@@ -585,6 +669,7 @@ body.modal-open {
 .video-close-btn:hover { background: rgba(255,255,255,0.3); }
 .video-container { position: relative; width: 100%; }
 .video-container video { width: 100%; display: block; border-radius: 24px 24px 0 0; max-height: 70vh; background: #000; }
+.video-close-btn:hover { background: rgba(255,255,255,0.3); }
 .video-controls { display: flex; align-items: center; gap: 12px; background: rgba(0,0,0,0.85); padding: 12px 20px; border-radius: 0 0 24px 24px; }
 
 .ctrl-btn { background: none; border: none; cursor: pointer; padding: 4px; display: flex; align-items: center; opacity: 0.85; transition: opacity 0.2s; flex-shrink: 0; color: white; }
@@ -595,12 +680,11 @@ body.modal-open {
 .volume-bar { -webkit-appearance: none; width: 80px; height: 4px; border-radius: 4px; background: rgba(255,255,255,0.25); outline: none; cursor: pointer; accent-color: white; }
 .volume-bar::-webkit-slider-thumb { -webkit-appearance: none; width: 12px; height: 12px; border-radius: 50%; background: white; cursor: pointer; }
 
-/* Animations & Structural Controls */
 .fade-in { opacity: 0; transform: translateY(20px); transition: 0.8s ease-out; }
 .fade-in.visible { opacity: 1; transform: translateY(0); }
 
 /* ==========================================================================
-   ── UNIFIED ECOSYSTEM BREAKPOINT MATRIX & RESPONSIVE DESIGN ──
+   ── RESPONSIVE GRID OVERLAY SYSTEM BREAKPOINTS ──
    ========================================================================== */
 .mobile-menu-btn { display: none; }
 
@@ -630,8 +714,10 @@ body.modal-open {
   .why-carousel { padding: 10px 16px 24px; }
   
   .extended-card { padding: 30px 20px 24px 20px !important; }
+  .page { padding: 40px 16px; }
+  .result-grid { grid-template-columns: 1fr; gap: 12px; }
 
-  /* Interactive Mobile Hamburger Element */
+  /* Mobile Dropdown Framework Toggle Hooks */
   .mobile-menu-btn {
     display: flex;
     flex-direction: column;
@@ -646,8 +732,6 @@ body.modal-open {
     border-radius: 2px;
     display: block;
   }
-
-  /* Mobile Dropdown Framework Toggle Hook */
   .mobile-nav-open .nav-links {
     display: flex;
     flex-direction: column;
@@ -664,136 +748,4 @@ body.modal-open {
     z-index: 999;
     border-bottom: 1px solid var(--line);
   }
-  
-  /* Responsive Balance Modifications for Standalone Calculator Card */
-  .sf-calc-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* ==========================================================================
-   ── CARD 2: STANDALONE SAVINGS CALCULATOR PAGE UTILITIES ──
-   ========================================================================== */
-.sf-back-link {
-  display: inline-flex;
-  align-items: center;
-  color: var(--accent);
-  font-weight: 600;
-  font-size: 15px;
-  text-decoration: none;
-  transition: opacity 0.15s ease;
-}
-.sf-back-link:hover {
-  opacity: 0.7;
-}
-
-.sf-calc-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 14px;
-  margin-top: 24px;
-}
-
-.sf-calc-box {
-  background: rgba(0, 0, 0, 0.02);
-  border: 0.5px solid rgba(0, 0, 0, 0.04);
-  border-radius: 16px;
-  padding: 16px;
-}
-
-.sf-calc-box.highlight {
-  background: var(--accent);
-  border: none;
-}
-
-.sf-calc-box.highlight .sf-calc-lbl,
-.sf-calc-box.highlight .sf-calc-val {
-  color: #ffffff;
-}
-
-.sf-calc-box.hero-dark {
-  grid-column: 1 / -1;
-  background: #1d1d1f;
-  border: none;
-  padding: 20px;
-}
-
-.sf-calc-box.hero-dark .sf-calc-lbl,
-.sf-calc-box.hero-dark .sf-calc-val {
-  color: #ffffff;
-}
-
-.sf-calc-lbl {
-  font-size: 10px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--muted);
-  margin-bottom: 6px;
-}
-
-.sf-calc-val {
-  font-size: 22px;
-  font-weight: 700;
-  color: var(--text);
-  letter-spacing: -0.02em;
-}
-
-/* Custom Native Look Range Sliders */
-.sf-slider-container {
-  padding: 10px 4px 6px 4px;
-}
-
-.sf-range-slider {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 100%;
-  height: 4px;
-  border-radius: 2px;
-  background: rgba(0, 0, 0, 0.08);
-  outline: none;
-  accent-color: var(--accent);
-}
-
-.sf-range-slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: #ffffff;
-  border: 0.5px solid rgba(0, 0, 0, 0.15);
-  box-shadow: 0 2px 5px rgba(0,0,0,0.12);
-  cursor: pointer;
-  transition: transform 0.1s ease;
-}
-
-.sf-range-slider::-webkit-slider-thumb:active {
-  transform: scale(1.1);
-}
-
-.sf-slider-meta {
-  display: flex;
-  justify-content: space-between;
-  font-size: 11px;
-  color: var(--muted);
-  margin-top: 8px;
-  font-weight: 500;
-}
-
-/* Translucent Tip Box Alert Styling */
-.sf-tip-callout {
-  background: rgba(52, 199, 89, 0.07);
-  border-left: 3.5px solid #34c759;
-  border-radius: 12px;
-  padding: 16px;
-  margin-top: 20px;
-}
-
-.sf-tip-callout p {
-  margin: 0;
-  color: #1c662c;
-  font-size: 13px;
-  font-weight: 500;
-  line-height: 1.5;
 }
