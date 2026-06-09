@@ -64,9 +64,10 @@ async function submitReport(event) {
 
 // ── CARD 2: SAVINGS CALCULATOR MODULE LOGIC ──
 function initializeSavingsCalculator() {
-  const inputRent = document.getElementById('calcTotalRent');
-  const inputRooms = document.getElementById('calcRooms');
-  const inputWeekly = document.getElementById('calcRoomRent');
+  // Matched exactly with the IDs in your preferred savings.html structure
+  const inputRent = document.getElementById('totalRent');
+  const inputRooms = document.getElementById('rooms');
+  const inputWeekly = document.getElementById('roomRent');
 
   // Guard clause: Stop if these element IDs are missing (meaning we are not on savings.html)
   if (!inputRent || !inputRooms || !inputWeekly) return;
@@ -82,15 +83,15 @@ function initializeSavingsCalculator() {
     const yearSave = monthlyIncome * 12;
     const coveragePercentage = totalRent > 0 ? Math.min(100, Math.round((monthlyIncome / totalRent) * 100)) : 0;
 
-    // DOM Value Binder Layer updates
-    document.getElementById('resIncome').textContent = '£' + monthlyIncome.toLocaleString();
-    document.getElementById('resYouPay').textContent = '£' + netCost.toLocaleString();
-    document.getElementById('resYearSave').textContent = '£' + yearSave.toLocaleString();
+    // DOM Value Binder Layer updates using your HTML IDs
+    document.getElementById('income').textContent = '£' + monthlyIncome.toLocaleString();
+    document.getElementById('youPay').textContent = '£' + netCost.toLocaleString();
+    document.getElementById('yearSave').textContent = '£' + yearSave.toLocaleString();
     
-    document.getElementById('tipBoxRooms').textContent = rooms;
-    document.getElementById('tipBoxRent').textContent = roomRent;
-    document.getElementById('tipBoxPercent').textContent = coveragePercentage;
-    document.getElementById('calcRoomVal').textContent = rooms + (rooms > 1 ? ' Spaces' : ' Space');
+    document.getElementById('tipRooms').textContent = rooms;
+    document.getElementById('tipRent').textContent = roomRent;
+    document.getElementById('tipPercent').textContent = coveragePercentage;
+    document.getElementById('roomVal').textContent = rooms + (rooms > 1 ? ' rooms' : ' room');
   };
 
   // Event monitors tracking user runtime slide/typing interactions
@@ -104,7 +105,6 @@ function initializeSavingsCalculator() {
 
 // ── CENTRAL ROUTER LIFECYCLE INITIALIZER ──
 document.addEventListener('DOMContentLoaded', () => {
-  
   // 1. Check if we're on the Verified Listings/Reporting Frame
   const submitBtn = document.getElementById('submitReportBtn');
   if (submitBtn) {
