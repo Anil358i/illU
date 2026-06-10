@@ -47,7 +47,7 @@
       }
     });
 
-    // ── FETCH AND RENDER LOGGED-IN USER'S PORTFOLIO LISTINGS ONLY ──
+    // ── FETCH AND RENDER LOGGED-IN USER'S PORTFOLIO LISTINGS WITH DYNAMIC PRICES ──
     async function renderMyListingsGrid() {
       const grid = document.getElementById('myListingsGrid');
       if (!grid) return;
@@ -70,14 +70,35 @@
           return;
         }
 
+        // Detect active toggle view mode from the main homepage dashboard layout (day, week, month)
+        let activeDuration = 'day'; 
+        const activeToggleBtn = document.querySelector('.toggle-group .toggle-btn.active');
+        if (activeToggleBtn) {
+          const btnText = activeToggleBtn.textContent.trim().toLowerCase();
+          if (btnText.includes('week')) activeDuration = 'week';
+          else if (btnText.includes('month')) activeDuration = 'month';
+        }
+
         querySnapshot.forEach((docSnap) => {
           const data = docSnap.data();
           const docId = docSnap.id;
           
           const imageUrl = data.image || data.imageUrl || data.img || data.propertyImage || "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=600";
           
-          // Fallback parsing logic to catch price parameters under common field alternatives
-          const propertyPrice = data.price || data.weeklyRent || data.rent || '—';
+          // Get the base rate value stored in database documents
+          const basePrice = parseFloat(data.price || data.weeklyRent || data.rent || 0);
+          
+          // Match the exact math scaling logic used inside your main page carousel
+          let displayedPriceText = "";
+          if (activeDuration === 'day') {
+            const dayPrice = Math.round(basePrice / 7);
+            displayedPriceText = `£${dayPrice} / Day`;
+          } else if (activeDuration === 'month') {
+            const monthPrice = Math.round(basePrice * 4.33);
+            displayedPriceText = `£${monthPrice} / Month`;
+          } else {
+            displayedPriceText = `£${Math.round(basePrice)} / Week`;
+          }
 
           const card = document.createElement('div');
           card.style.cssText = 'background:rgba(0,0,0,0.02); padding:12px; border-radius:14px; display:flex; align-items:center; gap:16px; border:1px solid rgba(0,0,0,0.04);';
@@ -90,7 +111,7 @@
               <div style="font-weight:600; font-size:15px; color:#1d1d1f;">${data.name || 'Unnamed Property'}</div>
               <div style="font-size:13px; color:#86868b; margin-top:3px; line-height:1.4;">
                 📍 ${data.address || 'No Address'}<br>
-                💰 Weekly Rent: £${propertyPrice} | 📞 ${data.phone || 'No Phone'}
+                💰 Rent: ${displayedPriceText} | 📞 ${data.phone || 'No Phone'}
               </div>
             </div>
             <button class="delete-listing-btn" style="background:#ff3b30; color:white; border:none; padding:8px 14px; border-radius:8px; font-weight:600; cursor:pointer; font-size:13px; transition: opacity 0.2s; flex-shrink:0;">
