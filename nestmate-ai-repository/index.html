@@ -47,7 +47,7 @@
       }
     });
 
-    // ── FETCH AND RENDER LOGGED-IN USER'S PORTFOLIO LISTINGS USING MAIN PAGE IMAGE URLS ──
+    // ── FETCH AND RENDER LOGGED-IN USER'S PORTFOLIO LISTINGS ONLY ──
     async function renderMyListingsGrid() {
       const grid = document.getElementById('myListingsGrid');
       if (!grid) return;
@@ -61,6 +61,7 @@
       }
 
       try {
+        // Strict privacy query: matches properties explicitly belonging to your UID only
         const q = query(collection(db, "properties"), where("userId", "==", currentUser.uid));
         const querySnapshot = await getDocs(q);
         grid.innerHTML = ''; 
@@ -74,8 +75,8 @@
           const data = docSnap.data();
           const docId = docSnap.id;
           
-          // Using the exact image URL variable that displays correctly on the main page
-          const imageUrl = data.image || "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=600";
+          // Checks every possible database field name configuration to find your uploaded image url path string
+          const imageUrl = data.image || data.imageUrl || data.img || data.propertyImage || "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=600";
 
           const card = document.createElement('div');
           card.style.cssText = 'background:rgba(0,0,0,0.02); padding:12px; border-radius:14px; display:flex; align-items:center; gap:16px; border:1px solid rgba(0,0,0,0.04);';
@@ -169,7 +170,7 @@
           userId: currentUser.uid,
           email: currentUser.email,
           createdAt: new Date(),
-          image: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=600" // Fallback placeholder if no image field exists
+          image: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=600" 
         });
 
         statusText.style.color = "green";
