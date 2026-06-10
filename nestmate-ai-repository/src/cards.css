@@ -364,3 +364,304 @@
     text-align: center;
   }
 }
+/* =============================================
+   savings.html — Apple-style page styles
+   ============================================= */
+
+/* --- Page wrapper --- */
+.page {
+  min-height: 100vh;
+  background: #ffffff;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", sans-serif;
+  color: #1d1d1f;
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 32px 24px 80px;
+  box-sizing: border-box;
+}
+
+/* --- Back button --- */
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #1d1d1f;
+  text-decoration: none;
+  padding: 8px 16px;
+  border: 1px solid #d2d2d7;
+  border-radius: 980px;
+  margin-bottom: 36px;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.back-btn:hover {
+  background: #f5f5f7;
+  border-color: #b0b0b5;
+}
+
+.sf-icon {
+  width: 16px;
+  height: 16px;
+  stroke: #1d1d1f;
+}
+
+/* --- Hero image --- */
+.hero-img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  border-radius: 20px;
+  display: block;
+  margin-bottom: 36px;
+}
+
+/* --- Page title --- */
+h1 {
+  font-size: 40px;
+  font-weight: 700;
+  letter-spacing: -1.2px;
+  line-height: 1.1;
+  color: #1d1d1f;
+  margin: 0 0 14px 0;
+}
+
+.subtitle {
+  font-size: 17px;
+  color: #6e6e73;
+  line-height: 1.6;
+  margin: 0 0 40px 0;
+  letter-spacing: -0.1px;
+}
+
+/* --- Calculator card --- */
+.calc-card {
+  background: #f5f5f7;
+  border-radius: 20px;
+  padding: 36px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* --- Labels --- */
+.calc-label {
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: #6e6e73;
+  margin: 18px 0 8px 0;
+}
+
+.calc-label:first-child {
+  margin-top: 0;
+}
+
+/* --- Number inputs --- */
+.calc-input {
+  width: 100%;
+  padding: 14px 16px;
+  font-size: 22px;
+  font-weight: 600;
+  font-family: inherit;
+  color: #1d1d1f;
+  background: #ffffff;
+  border: 1px solid #d2d2d7;
+  border-radius: 14px;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.calc-input:focus {
+  border-color: #0071e3;
+  box-shadow: 0 0 0 3px rgba(0,113,227,0.15);
+}
+
+/* --- Slider --- */
+.slider-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 4px;
+}
+
+#rooms {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 5px;
+  border-radius: 980px;
+  background: #d2d2d7;
+  outline: none;
+  cursor: pointer;
+}
+
+#rooms::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #1d1d1f;
+  cursor: pointer;
+  border: 2px solid #ffffff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+  transition: transform 0.15s;
+}
+
+#rooms::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+}
+
+#rooms::-moz-range-thumb {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #1d1d1f;
+  cursor: pointer;
+  border: 2px solid #ffffff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+}
+
+.slider-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.meta-label {
+  font-size: 12px;
+  color: #adadb8;
+  font-weight: 400;
+}
+
+.slider-val {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1d1d1f;
+  background: #ffffff;
+  border: 1px solid #d2d2d7;
+  padding: 4px 14px;
+  border-radius: 980px;
+}
+
+/* --- Results grid --- */
+.result-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+  margin-top: 24px;
+  margin-bottom: 4px;
+}
+
+.result-box {
+  background: #ffffff;
+  border: 1px solid #d2d2d7;
+  border-radius: 16px;
+  padding: 20px 16px;
+  text-align: center;
+}
+
+.result-box.highlight {
+  background: #f0f7f0;
+  border-color: #c8e6c9;
+}
+
+.result-box.dynamic-dark {
+  background: #1d1d1f;
+  border-color: #1d1d1f;
+}
+
+.r-label {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: #6e6e73;
+  margin: 0 0 8px 0;
+}
+
+.result-box.dynamic-dark .r-label {
+  color: rgba(255,255,255,0.55);
+}
+
+.r-val {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.8px;
+  color: #1d1d1f;
+  margin: 0;
+}
+
+.result-box.highlight .r-val {
+  color: #2e7d32;
+}
+
+.result-box.dynamic-dark .r-val {
+  color: #ffffff;
+}
+
+/* --- Tip box --- */
+.tip {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: #ffffff;
+  border: 1px solid #d2d2d7;
+  border-radius: 14px;
+  padding: 18px 20px;
+  margin-top: 8px;
+}
+
+.sf-tip-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  stroke: #6e6e73;
+  margin-top: 1px;
+}
+
+.tip p {
+  font-size: 14px;
+  color: #6e6e73;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.tip p span {
+  font-weight: 600;
+  color: #1d1d1f;
+}
+
+/* --- Responsive --- */
+@media (max-width: 600px) {
+  .page {
+    padding: 24px 18px 60px;
+  }
+
+  h1 {
+    font-size: 30px;
+  }
+
+  .hero-img {
+    height: 200px;
+    border-radius: 16px;
+  }
+
+  .calc-card {
+    padding: 24px 20px;
+  }
+
+  .result-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .r-val {
+    font-size: 28px;
+  }
+}
