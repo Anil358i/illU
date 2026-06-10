@@ -318,7 +318,7 @@ body.modal-open {
   width: max-content;
 }
 
-/* Forced aspect ratios preventing full screen coverage images */
+/* Property layout containment fixes */
 .prop-card {
   flex: 0 0 320px;
   width: 320px;
@@ -336,11 +336,14 @@ body.modal-open {
   overflow: hidden; 
   position: relative; 
   background: #f0f0f2; 
+  flex-shrink: 0; /* Prevents container from losing height structure */
 }
-.prop-image-wrap img { 
-  width: 100%; 
-  height: 100%; 
-  object-fit: cover; /* Forces file dimensions inside card limits */
+.prop-image-wrap img,
+.prop-card img { 
+  width: 100% !important; 
+  height: 100% !important; 
+  max-width: 100%;
+  object-fit: cover; /* Keeps image beautifully cropped inside bounds */
   display: block; 
 }
 .prop-info { 
@@ -418,11 +421,12 @@ body.modal-open {
 .mobile-menu-btn { display: none; }
 
 @media (max-width: 768px) {
-  .nav-links {
-    display: none !important;
-    position: static !important;
-    transform: none !important;
-    left: auto !important;
+  /* Separated responsive toggle frameworks cleanly */
+  .nav-inner .nav-links {
+    display: none;
+    position: static;
+    transform: none;
+    left: auto;
   }
   .nav-inner { padding: 12px 20px; }
   .hero-section { padding: 80px 20px 50px; }
@@ -454,8 +458,10 @@ body.modal-open {
     border-radius: 2px;
     display: block;
   }
-  .mobile-nav-open .nav-links {
-    display: flex;
+  
+  /* Increased specificity over native mobile hide state */
+  body.mobile-nav-open .nav-inner .nav-links {
+    display: flex !important;
     flex-direction: column;
     position: fixed;
     top: 60px;
