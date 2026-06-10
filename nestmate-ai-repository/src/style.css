@@ -220,9 +220,13 @@ body.modal-open {
 }
 .sf-list-row { 
   display: flex; 
-  align-items: flex-start; 
+  align-items: center; 
   gap: 16px; 
-  padding: 16px 0; 
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.02);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  border-radius: 14px;
+  margin-bottom: 10px;
 }
 
 /* ==========================================================================
@@ -294,7 +298,7 @@ body.modal-open {
 .hero-copy { font-size: 1.3rem; color: var(--muted); margin-top: 20px; }
 
 /* ==========================================================================
-   ── DATA CAROUSEL FRAMEWORKS (UNIFIED PROPERTIES & HOUSES) ──
+   ── AVAILABLE LISTINGS CAROUSEL FRAMEWORK (FIXED WIDTH) ──
    ========================================================================== */
 .explore-section { padding: 60px 0; text-align: center; }
 .carousel-outer {
@@ -312,6 +316,50 @@ body.modal-open {
   align-items: flex-start;
   flex-wrap: nowrap;
   width: max-content;
+}
+
+/* Forced aspect ratios preventing full screen coverage images */
+.prop-card {
+  flex: 0 0 320px;
+  width: 320px;
+  background: var(--surface-solid);
+  border-radius: var(--radius-apple);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+}
+.prop-image-wrap { 
+  width: 100%; 
+  height: 200px; 
+  overflow: hidden; 
+  position: relative; 
+  background: #f0f0f2; 
+}
+.prop-image-wrap img { 
+  width: 100%; 
+  height: 100%; 
+  object-fit: cover; /* Forces file dimensions inside card limits */
+  display: block; 
+}
+.prop-info { 
+  padding: 20px; 
+  text-align: left; 
+}
+.prop-name { 
+  font-weight: 600; 
+  font-size: 1.1rem; 
+  margin-bottom: 5px; 
+  color: var(--text); 
+}
+.prop-price {
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+.prop-price strong { 
+  font-size: 1.2rem; 
+  color: #000; 
 }
 
 /* Segmented Pill Selection Bars */
@@ -389,6 +437,7 @@ body.modal-open {
   .chat-wrapper { padding: 20px; margin: 30px auto; }
   
   .extended-card { padding: 30px 20px 24px 20px !important; }
+  .prop-card { flex: 0 0 280px; width: 280px; }
 
   /* Mobile Dropdown Framework Toggle Hooks */
   .mobile-menu-btn {
