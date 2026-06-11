@@ -1,4 +1,4 @@
-# 🏠 NestMate AI
+# 🏠 illU AI
 
 > Help international graduates in London live almost free by renting a 3-bed house and subletting spare rooms.
 
