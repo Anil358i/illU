@@ -1,4 +1,4 @@
-# Workflow for deploying NestMate AI to GitHub Pages
+# Workflow for deploying illU AI to GitHub Pages
 name: Deploy static content to Pages
 
 on:
@@ -34,7 +34,7 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           # This must be '.' if index.html is in your root folder
-          path: './nestmate-ai-repository' 
+          path: './illU-ai-repository' 
 
       - name: Deploy to GitHub Pages
         id: deployment

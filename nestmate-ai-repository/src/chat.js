@@ -377,7 +377,7 @@ window.modalUploadProperty = () => {
 
     cloudinary.openUploadWidget({
         cloudName: "dhmsg8euy",
-        uploadPreset: "nestmate_unsigned",
+        uploadPreset: "illU_unsigned",
         sources: ['local', 'url', 'camera'],
         multiple: false,
         cropping: true,
@@ -444,7 +444,7 @@ window.bookNow = () => {
     const phone = document.getElementById('detailPhone').textContent;
     const email = document.getElementById('detailEmail').textContent;
 
-    const message = `Hi! I found your property on NestMate AI and I am interested in booking it.
+    const message = `Hi! I found your property on illU AI and I am interested in booking it.
 
 🏠 Property: ${name}
 💰 Price: ${price}

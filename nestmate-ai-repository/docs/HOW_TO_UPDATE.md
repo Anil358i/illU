@@ -1,4 +1,4 @@
-# How to Update NestMate AI
+# How to Update illU AI
 ### (No coding knowledge needed — step by step)
 
 ## PART 1 — Setting Up GitHub (one time only)
@@ -12,7 +12,7 @@
 **Step 2 — Create a new repository**
 1. Click the + button top right
 2. Click New repository
-3. Name it: nestmate-ai
+3. Name it: illU-ai
 4. Set to Public
 5. Click Create repository
 
@@ -29,10 +29,10 @@
 1. Go to vercel.com
 2. Click Sign up → Continue with GitHub
 3. Click Add New Project
-4. Find nestmate-ai → click Import
+4. Find illU-ai → click Import
 5. Click Deploy
 6. Wait 1 minute — your site is LIVE!
-   URL will be: nestmate-ai.vercel.app
+   URL will be: illU-ai.vercel.app
 
 ---
 

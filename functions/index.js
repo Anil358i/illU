@@ -2,7 +2,7 @@ const { onRequest } = require("firebase-functions/v2/https");
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 
 // This is your AI Brain
-exports.nestmateAI = onRequest({ cors: true }, async (req, res) => {
+exports.illUAI = onRequest({ cors: true }, async (req, res) => {
     try {
         // 1. Get the message the user typed in your chat box
         const userMessage = req.body.message;
@@ -13,7 +13,7 @@ exports.nestmateAI = onRequest({ cors: true }, async (req, res) => {
         const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
         // 3. Set the personality of your AI
-        const systemPrompt = "You are NestMate AI, a helpful London housing expert. " +
+        const systemPrompt = "You are illU AI, a helpful London housing expert. " +
                              "Help students find rooms and save on rent.";
 
         // 4. Ask Gemini for the answer

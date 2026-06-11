@@ -1,4 +1,4 @@
-# 🏠 NestMate AI
+# 🏠 illU AI
 
 > Help international graduates in London live almost free by renting a 3-bed house and subletting spare rooms.
 
@@ -10,7 +10,7 @@ Deploy to Vercel (free) — see deployment guide below.
 ## 📁 Project Structure
 
 ```
-nestmate-ai/
+illU-ai/
 ├── index.html          ← Main page (edit headings/text here)
 ├── src/
 │   ├── style.css       ← All colours and design (edit colours here)

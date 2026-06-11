@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact a Host — NestMate AI</title>
+  <title>Contact a Host — illU AI</title>
   <link rel="stylesheet" href="src/style.css">
   <style>
     body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background:#f5f5f7; margin:0; padding:0; }
@@ -30,7 +30,7 @@
 </head>
 <body>
   <div class="page">
-    <a href="index.html" class="back-btn">← Back to NestMate</a>
+    <a href="index.html" class="back-btn">← Back to illU</a>
     <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800" class="hero-img" alt="Contact host">
     <h1>One tap to connect.</h1>
     <p class="subtitle">Message any host directly via WhatsApp or email — no waiting, no agents, no forms to fill.</p>
@@ -42,7 +42,7 @@
       <p class="field-label">Host email</p>
       <input type="email" class="field-input" id="hostEmail" placeholder="host@example.com">
       <p class="field-label">Your message</p>
-      <textarea class="field-input" id="msgBody">Hi! I found your property on NestMate AI and I'm interested. Could you tell me more about availability?</textarea>
+      <textarea class="field-input" id="msgBody">Hi! I found your property on illU AI and I'm interested. Could you tell me more about availability?</textarea>
       <div class="btn-row">
         <button class="btn-whatsapp" onclick="sendWhatsApp()">💬 WhatsApp</button>
         <button class="btn-email" onclick="sendEmail()">✉️ Email</button>
@@ -81,7 +81,7 @@
       const email = document.getElementById('hostEmail').value;
       const msg = document.getElementById('msgBody').value;
       if (!email) return alert('Please enter the host email address.');
-      window.open(`mailto:${email}?subject=NestMate AI Enquiry&body=${encodeURIComponent(msg)}`, '_blank');
+      window.open(`mailto:${email}?subject=illU AI Enquiry&body=${encodeURIComponent(msg)}`, '_blank');
     }
   </script>
 </body>

@@ -3,9 +3,9 @@ import { getFirestore, collection, getDocs, addDoc, query } from "https://www.gs
 
 const firebaseConfig = {
   apiKey: "AIzaSyDTxyr3zJGsyfmdztvfFz8aw9XSyPCNeQM",
-  authDomain: "nestmate-ai.firebaseapp.com",
-  projectId: "nestmate-ai",
-  storageBucket: "nestmate-ai.firebasestorage.app",
+  authDomain: "illU-ai.firebaseapp.com",
+  projectId: "illU-ai",
+  storageBucket: "illU-ai.firebasestorage.app",
   messagingSenderId: "7053398074",
   appId: "1:7053398074:web:13dc18b49402d95107a503"
 };
