@@ -106,33 +106,70 @@ function initializeSavingsCalculator() {
   // Run once immediately so results show on page load
   calculate();
 }
+/*savings*/
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Savings Calculator — illU AI</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="sav-topbar">
+    <div class="sav-brand">illU AI</div>
+    <a href="index.html" class="sav-home-btn">Back to home</a>
+  </header>
 
-// ── MAPS.HTML: Search area by typed input ──
-window.searchArea = function() {
-  const area = document.getElementById('areaInput').value.trim();
-  if (!area) return;
-  const q = encodeURIComponent('rental properties ' + area);
-  document.getElementById('mapFrame').src =
-    `https://www.google.com/maps/embed/v1/search?q=${q}&key=AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY`;
-};
+  <div class="sav-page">
+    <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800" class="sav-hero-img" alt="Save money">
 
-// ── MAPS.HTML: Search area by zone button ──
-window.searchZone = function(zone) {
-  const q = encodeURIComponent('rental properties ' + zone);
-  document.getElementById('mapFrame').src =
-    `https://www.google.com/maps/embed/v1/search?q=${q}&key=AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY`;
-};
+    <h1 class="sav-title">How much could you save?</h1>
+    <p class="sav-subtitle">Rent a 3-bed house, fill the spare rooms, and let your tenants cover most of your rent. Use the calculator below.</p>
 
-// ── ROUTER: runs on DOMContentLoaded, activates the right module ──
-document.addEventListener('DOMContentLoaded', () => {
+    <div class="sav-calc-card">
+      <p class="sav-calc-label">Your monthly rent (£)</p>
+      <input type="number" class="sav-calc-input" id="totalRent" value="2000">
 
-  // Verified Listings / Report page
-  const submitBtn = document.getElementById('submitReportBtn');
-  if (submitBtn) {
-    loadVerifiedHostCount();
-    submitBtn.addEventListener('click', submitReport);
-  }
+      <p class="sav-calc-label">Number of spare rooms you'll rent out</p>
+      <div class="sav-slider-wrap">
+        <input type="range" min="1" max="4" value="2" id="rooms" class="sav-slider">
+        <div class="sav-slider-meta">
+          <span class="sav-meta-label">1 room</span>
+          <span class="sav-slider-val" id="roomVal">2 rooms</span>
+          <span class="sav-meta-label">4 rooms</span>
+        </div>
+      </div>
 
-  // Savings Calculator page
-  initializeSavingsCalculator();
-});
+      <p class="sav-calc-label">Weekly rent per room (£)</p>
+      <input type="number" class="sav-calc-input" id="roomRent" value="150">
+
+      <div class="sav-result-grid">
+        <div class="sav-result-box">
+          <p class="sav-r-label">Monthly income</p>
+          <p class="sav-r-val" id="income">£--</p>
+        </div>
+        <div class="sav-result-box sav-highlight">
+          <p class="sav-r-label">You pay</p>
+          <p class="sav-r-val" id="youPay">£--</p>
+        </div>
+        <div class="sav-result-box sav-dynamic-dark">
+          <p class="sav-r-label">You save per year</p>
+          <p class="sav-r-val" id="yearSave">£--</p>
+        </div>
+      </div>
+
+      <div class="sav-tip">
+        <svg class="sav-tip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A5 5 0 0 0 8 8c0 1.3.5 2.6 1.5 3.5.8.8 1.3 1.5 1.5 2.5"></path>
+          <line x1="9" y1="18" x2="15" y2="18"></line>
+          <line x1="10" y1="22" x2="14" y2="22"></line>
+        </svg>
+        <p>With <span id="tipRooms">--</span> rooms at £<span id="tipRent">--</span>/week, your tenants cover <span id="tipPercent">--</span>% of your rent — you keep the rest.</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
