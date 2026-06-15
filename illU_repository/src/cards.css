@@ -707,61 +707,80 @@
   }
 }
 /* =============================================
-   Listings Map — Apple-style page styles
+   Listings Map — Apple-style CSS
+   Complete rewrite for full compatibility
    ============================================= */
 
-/* --- Page wrapper --- */
-.page {
-  min-height: 100vh;
-  background: #ffffff;
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", sans-serif;
-  color: #1d1d1f;
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
   padding: 0;
 }
 
-/* --- Back button --- */
+/* --- PAGE WRAPPER --- */
+.page {
+  min-height: 100vh;
+  width: 100%;
+  background-color: #ffffff;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", sans-serif;
+  color: #1d1d1f;
+}
+
+/* --- BACK BUTTON --- */
 .back-btn {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
   padding: 10px 18px;
-  margin: 24px 24px 0;
+  margin: 24px 0 0 24px;
   font-size: 14px;
   font-weight: 500;
   color: #1d1d1f;
   text-decoration: none;
+  background-color: #ffffff;
   border: 1px solid #d2d2d7;
   border-radius: 980px;
-  transition: background 0.2s, border-color 0.2s;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
 .back-btn:hover {
-  background: #f5f5f7;
+  background-color: #f5f5f7;
   border-color: #b0b0b5;
 }
 
-/* --- Hero section --- */
+.back-btn:active {
+  transform: scale(0.98);
+}
+
+/* --- HERO HEADING --- */
 h1 {
   font-size: 48px;
   font-weight: 700;
   line-height: 1.08;
   letter-spacing: -1.2px;
   color: #1d1d1f;
-  margin: 40px 24px 16px;
+  margin: 40px 24px 16px 24px;
   padding: 0;
 }
 
+/* --- SUBTITLE --- */
 .subtitle {
   font-size: 16px;
   font-weight: 400;
   color: #6e6e73;
   line-height: 1.6;
-  margin: 0 24px 40px;
-  max-width: 600px;
   letter-spacing: -0.2px;
+  margin: 0 24px 40px 24px;
+  max-width: 600px;
+  padding: 0;
 }
 
-/* --- Stats grid --- */
+/* --- STATS GRID --- */
 .sf-stats-grid {
   display: grid;
   gap: 12px;
@@ -769,43 +788,52 @@ h1 {
 }
 
 .map-stats-grid {
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
   max-width: 600px;
   margin-left: 24px;
   margin-right: 24px;
+  margin-bottom: 40px;
 }
 
 .sf-stat-pill {
-  padding: 20px 16px;
-  background: #f5f5f7;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px;
+  background-color: #f5f5f7;
   border: 1px solid #d2d2d7;
   border-radius: 12px;
   text-align: center;
-  transition: box-shadow 0.2s, background 0.2s;
+  transition: all 0.2s ease;
+  cursor: pointer;
 }
 
 .sf-stat-pill:hover {
-  background: #ffffff;
+  background-color: #ffffff;
+  border-color: #0071e3;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
 }
 
 .sf-stat-num {
-  font-size: 28px;
+  font-size: 32px;
   margin-bottom: 8px;
+  display: block;
 }
 
 .sf-stat-lbl {
   font-size: 13px;
-  color: #6e6e73;
   font-weight: 500;
+  color: #6e6e73;
   letter-spacing: -0.1px;
+  margin: 0;
 }
 
-/* --- Search bar --- */
+/* --- SEARCH BAR --- */
 .map-search-bar {
   display: flex;
   gap: 8px;
-  margin: 0 24px 32px;
+  margin: 0 24px 32px 24px;
   max-width: 600px;
 }
 
@@ -815,11 +843,11 @@ h1 {
   font-size: 15px;
   font-family: inherit;
   color: #1d1d1f;
-  background: #ffffff;
+  background-color: #ffffff;
   border: 1px solid #d2d2d7;
   border-radius: 12px;
   outline: none;
-  transition: border-color 0.2s, box-shadow 0.2s;
+  transition: all 0.2s ease;
 }
 
 .map-search-input:focus {
@@ -837,98 +865,101 @@ h1 {
   font-weight: 600;
   font-family: inherit;
   color: #ffffff;
-  background: #1d1d1f;
+  background-color: #1d1d1f;
   border: none;
   border-radius: 12px;
   cursor: pointer;
-  transition: background 0.2s, transform 0.1s;
+  transition: all 0.2s ease;
   white-space: nowrap;
 }
 
 .map-search-btn:hover {
-  background: #3a3a3c;
+  background-color: #3a3a3c;
 }
 
 .map-search-btn:active {
   transform: scale(0.97);
 }
 
-/* --- Map frame --- */
+/* --- MAP FRAME --- */
 .map-frame {
+  display: block;
   width: calc(100% - 48px);
   height: 500px;
-  margin: 0 24px 40px;
+  margin: 0 24px 40px 24px;
   border: 1px solid #d2d2d7;
   border-radius: 18px;
-  display: block;
 }
 
-/* --- Section label --- */
+/* --- SECTION LABEL --- */
 .sf-section-label {
   font-size: 12px;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: #6e6e73;
-  margin: 40px 24px 20px;
+  margin: 40px 24px 20px 24px;
   padding: 0;
 }
 
-/* --- Zone buttons grid --- */
+/* --- ZONE BUTTONS GRID --- */
 .zone-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
   gap: 10px;
-  margin: 0 24px 48px;
+  margin: 0 24px 48px 24px;
   max-width: 600px;
 }
 
 .zone-btn {
-  padding: 12px 20px;
+  padding: 12px 16px;
   font-size: 14px;
   font-weight: 600;
   font-family: inherit;
   color: #1d1d1f;
-  background: #f5f5f7;
+  background-color: #f5f5f7;
   border: 1px solid #d2d2d7;
   border-radius: 12px;
   cursor: pointer;
-  transition: background 0.2s, border-color 0.2s, transform 0.1s;
+  transition: all 0.2s ease;
 }
 
 .zone-btn:hover {
-  background: #ffffff;
+  background-color: #ffffff;
   border-color: #0071e3;
+  box-shadow: 0 2px 8px rgba(0, 113, 227, 0.12);
 }
 
 .zone-btn:active {
   transform: scale(0.97);
 }
 
-/* --- List group --- */
+/* --- LIST GROUP --- */
 .sf-list-group {
   display: flex;
   flex-direction: column;
   gap: 16px;
-  margin: 0 24px 48px;
+  margin: 0 24px 48px 24px;
   max-width: 600px;
 }
 
 .sf-list-row {
   display: flex;
   gap: 18px;
+  align-items: flex-start;
   padding: 24px;
+  background-color: #ffffff;
   border: 1px solid #d2d2d7;
   border-radius: 18px;
-  background: #ffffff;
-  transition: box-shadow 0.2s;
+  transition: all 0.2s ease;
 }
 
 .sf-list-row:hover {
+  border-color: #b0b0b5;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
 }
 
-/* --- Icon boxes --- */
+/* --- ICON BOX --- */
 .sf-icon-box {
   width: 44px;
   height: 44px;
@@ -945,10 +976,11 @@ h1 {
   stroke-width: 2;
   stroke-linecap: round;
   stroke-linejoin: round;
+  fill: none;
 }
 
 .glyph-green {
-  background: #f0f7f0;
+  background-color: #f0f7f0;
 }
 
 .glyph-green svg {
@@ -956,14 +988,14 @@ h1 {
 }
 
 .glyph-blue {
-  background: #e8f2ff;
+  background-color: #e8f2ff;
 }
 
 .glyph-blue svg {
   stroke: #0071e3;
 }
 
-/* --- Row content --- */
+/* --- ROW CONTENT --- */
 .sf-row-content {
   flex: 1;
 }
@@ -972,7 +1004,8 @@ h1 {
   font-size: 16px;
   font-weight: 600;
   color: #1d1d1f;
-  margin: 0 0 6px;
+  margin: 0 0 6px 0;
+  padding: 0;
   letter-spacing: -0.2px;
 }
 
@@ -981,16 +1014,18 @@ h1 {
   color: #6e6e73;
   line-height: 1.55;
   margin: 0;
+  padding: 0;
   letter-spacing: -0.1px;
 }
 
-/* --- Tip box --- */
+/* --- TIP BOX --- */
 .tip {
   display: flex;
   gap: 14px;
+  align-items: flex-start;
   padding: 20px 24px;
-  margin: 0 24px 80px;
-  background: #f5f5f7;
+  margin: 0 24px 80px 24px;
+  background-color: #f5f5f7;
   border: 1px solid #d2d2d7;
   border-radius: 18px;
   max-width: 600px;
@@ -1002,6 +1037,9 @@ h1 {
   color: #6e6e73;
   flex-shrink: 0;
   margin-top: 2px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
 }
 
 .tip p {
@@ -1009,6 +1047,7 @@ h1 {
   color: #6e6e73;
   line-height: 1.6;
   margin: 0;
+  padding: 0;
   letter-spacing: -0.1px;
 }
 
@@ -1017,15 +1056,15 @@ h1 {
   font-weight: 600;
 }
 
-/* --- Responsive --- */
+/* --- RESPONSIVE: TABLET --- */
 @media (max-width: 768px) {
   h1 {
     font-size: 32px;
-    margin: 32px 16px 12px;
+    margin: 32px 16px 12px 16px;
   }
 
   .subtitle {
-    margin: 0 16px 32px;
+    margin: 0 16px 32px 16px;
     font-size: 15px;
   }
 
@@ -1036,7 +1075,7 @@ h1 {
   }
 
   .map-search-bar {
-    margin: 0 16px 28px;
+    margin: 0 16px 28px 16px;
     flex-direction: column;
   }
 
@@ -1047,20 +1086,20 @@ h1 {
 
   .map-frame {
     width: calc(100% - 32px);
-    height: 380px;
-    margin: 0 16px 32px;
+    height: 400px;
+    margin: 0 16px 32px 16px;
   }
 
   .sf-section-label {
-    margin: 32px 16px 16px;
+    margin: 32px 16px 16px 16px;
   }
 
   .zone-grid {
-    margin: 0 16px 40px;
+    margin: 0 16px 40px 16px;
   }
 
   .sf-list-group {
-    margin: 0 16px 40px;
+    margin: 0 16px 40px 16px;
   }
 
   .sf-list-row {
@@ -1069,7 +1108,7 @@ h1 {
   }
 
   .tip {
-    margin: 0 16px 60px;
+    margin: 0 16px 60px 16px;
     padding: 16px 18px;
   }
 
@@ -1082,20 +1121,21 @@ h1 {
   }
 }
 
+/* --- RESPONSIVE: MOBILE --- */
 @media (max-width: 480px) {
   h1 {
     font-size: 24px;
-    margin: 24px 12px 10px;
+    margin: 24px 12px 10px 12px;
     line-height: 1.2;
   }
 
   .subtitle {
-    margin: 0 12px 24px;
+    margin: 0 12px 24px 12px;
     font-size: 14px;
   }
 
   .back-btn {
-    margin: 16px 12px 0;
+    margin: 16px 0 0 12px;
     padding: 10px 14px;
     font-size: 13px;
   }
@@ -1107,39 +1147,47 @@ h1 {
   }
 
   .map-search-bar {
-    margin: 0 12px 24px;
+    margin: 0 12px 24px 12px;
+    flex-direction: column;
+  }
+
+  .map-search-input,
+  .map-search-btn {
+    width: 100%;
   }
 
   .map-frame {
     width: calc(100% - 24px);
     height: 300px;
-    margin: 0 12px 28px;
+    margin: 0 12px 28px 12px;
   }
 
   .sf-section-label {
-    margin: 28px 12px 14px;
+    margin: 28px 12px 14px 12px;
     font-size: 11px;
   }
 
   .zone-grid {
-    gap: 8px;
-    margin: 0 12px 32px;
     grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    margin: 0 12px 32px 12px;
   }
 
   .zone-btn {
-    padding: 10px 16px;
+    padding: 10px 14px;
     font-size: 13px;
   }
 
   .sf-list-group {
     gap: 12px;
-    margin: 0 12px 32px;
+    margin: 0 12px 32px 12px;
   }
 
   .sf-list-row {
     padding: 16px;
     gap: 12px;
+    flex-direction: column;
+    align-items: flex-start;
   }
 
   .sf-icon-box {
@@ -1148,7 +1196,7 @@ h1 {
   }
 
   .tip {
-    margin: 0 12px 48px;
+    margin: 0 12px 48px 12px;
     gap: 12px;
     padding: 14px 16px;
   }
