@@ -3,123 +3,64 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Listings Map — illU AI</title>
-  <link rel="stylesheet" href="src/style.css">
-  <link rel="stylesheet" href="src/savings-calculator.css">
+  <title>Savings Calculator — illU AI</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <header class="sav-topbar">
+    <div class="sav-brand">illU AI</div>
+    <a href="index.html" class="sav-home-btn">Back to home</a>
+  </header>
 
-  <div class="page">
+  <div class="sav-page">
+    <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800" class="sav-hero-img" alt="Save money">
 
-    <a href="index.html" class="back-btn">← Back to illU</a>
+    <h1 class="sav-title">How much could you save?</h1>
+    <p class="sav-subtitle">Rent a 3-bed house, fill the spare rooms, and let your tenants cover most of your rent. Use the calculator below.</p>
 
-    <!-- HERO -->
-    <h1>Every listing<br>on the map.</h1>
-    <p class="subtitle">Search any London area to find illU properties near you. Every listing has a verified address and a direct Google Maps link.</p>
+    <div class="sav-calc-card">
+      <p class="sav-calc-label">Your monthly rent (£)</p>
+      <input type="number" class="sav-calc-input" id="totalRent" value="2000">
 
-    <!-- STATS ROW -->
-    <div class="sf-stats-grid map-stats-grid">
-      <div class="sf-stat-pill">
-        <div class="sf-stat-num">📍</div>
-        <div class="sf-stat-lbl">Exact address</div>
-      </div>
-      <div class="sf-stat-pill">
-        <div class="sf-stat-num">🗺️</div>
-        <div class="sf-stat-lbl">Maps link</div>
-      </div>
-      <div class="sf-stat-pill">
-        <div class="sf-stat-num">🚇</div>
-        <div class="sf-stat-lbl">Commute ready</div>
-      </div>
-    </div>
-
-    <!-- SEARCH BAR -->
-    <div class="map-search-bar">
-      <input
-        type="text"
-        class="map-search-input"
-        id="areaInput"
-        placeholder="Search area e.g. Hackney, Brixton, Canary Wharf..."
-        onkeydown="if(event.key==='Enter') searchArea()"
-      >
-      <button class="map-search-btn" onclick="searchArea()">Search</button>
-    </div>
-
-    <!-- MAP IFRAME -->
-    <iframe
-      id="mapFrame"
-      class="map-frame"
-      src="https://www.google.com/maps/embed/v1/search?q=rental+properties+London&key=AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY"
-      allowfullscreen>
-    </iframe>
-
-    <!-- ZONE BUTTONS -->
-    <p class="sf-section-label">Browse by zone</p>
-    <div class="zone-grid">
-      <button class="zone-btn" onclick="searchZone('Zone 1 Central London')">Zone 1</button>
-      <button class="zone-btn" onclick="searchZone('Zone 2 London')">Zone 2</button>
-      <button class="zone-btn" onclick="searchZone('Zone 3 London')">Zone 3</button>
-      <button class="zone-btn" onclick="searchZone('Hackney London')">Hackney</button>
-      <button class="zone-btn" onclick="searchZone('Brixton London')">Brixton</button>
-      <button class="zone-btn" onclick="searchZone('Canary Wharf London')">Canary Wharf</button>
-      <button class="zone-btn" onclick="searchZone('Shoreditch London')">Shoreditch</button>
-      <button class="zone-btn" onclick="searchZone('Peckham London')">Peckham</button>
-      <button class="zone-btn" onclick="searchZone('Stratford London')">Stratford</button>
-    </div>
-
-    <!-- HOW IT WORKS -->
-    <p class="sf-section-label">What you get on every listing</p>
-    <div class="sf-list-group">
-      <div class="sf-list-row">
-        <div class="sf-icon-box glyph-green">
-          <svg viewBox="0 0 24 24">
-            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-            <circle cx="12" cy="10" r="3"/>
-          </svg>
-        </div>
-        <div class="sf-row-content">
-          <div class="sf-row-title">Google Maps Link on Every Listing</div>
-          <div class="sf-row-desc">One tap opens the property in Google Maps so you can check commute times, tube stops, and nearby amenities instantly.</div>
+      <p class="sav-calc-label">Number of spare rooms you'll rent out</p>
+      <div class="sav-slider-wrap">
+        <input type="range" min="1" max="4" value="2" id="rooms" class="sav-slider">
+        <div class="sav-slider-meta">
+          <span class="sav-meta-label">1 room</span>
+          <span class="sav-slider-val" id="roomVal">2 rooms</span>
+          <span class="sav-meta-label">4 rooms</span>
         </div>
       </div>
-      <div class="sf-list-row">
-        <div class="sf-icon-box glyph-blue">
-          <svg viewBox="0 0 24 24">
-            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-            <polyline points="9 22 9 12 15 12 15 22"/>
-          </svg>
+
+      <p class="sav-calc-label">Weekly rent per room (£)</p>
+      <input type="number" class="sav-calc-input" id="roomRent" value="150">
+
+      <div class="sav-result-grid">
+        <div class="sav-result-box">
+          <p class="sav-r-label">Monthly income</p>
+          <p class="sav-r-val" id="income">£--</p>
         </div>
-        <div class="sf-row-content">
-          <div class="sf-row-title">Full Street Address Shown Upfront</div>
-          <div class="sf-row-desc">No vague "North London" descriptions. Every listing shows the complete street address before you even contact the host.</div>
+        <div class="sav-result-box sav-highlight">
+          <p class="sav-r-label">You pay</p>
+          <p class="sav-r-val" id="youPay">£--</p>
+        </div>
+        <div class="sav-result-box sav-dynamic-dark">
+          <p class="sav-r-label">You save per year</p>
+          <p class="sav-r-val" id="yearSave">£--</p>
         </div>
       </div>
-      <div class="sf-list-row">
-        <div class="sf-icon-box glyph-green">
-          <svg viewBox="0 0 24 24">
-            <circle cx="12" cy="12" r="10"/>
-            <line x1="2" y1="12" x2="22" y2="12"/>
-            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
-          </svg>
-        </div>
-        <div class="sf-row-content">
-          <div class="sf-row-title">Plan Your Commute Before Moving</div>
-          <div class="sf-row-desc">Use the Maps link to check walking distance to tube stations, bus routes, and your workplace before committing to a viewing.</div>
-        </div>
+
+      <div class="sav-tip">
+        <svg class="sav-tip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A5 5 0 0 0 8 8c0 1.3.5 2.6 1.5 3.5.8.8 1.3 1.5 1.5 2.5"></path>
+          <line x1="9" y1="18" x2="15" y2="18"></line>
+          <line x1="10" y1="22" x2="14" y2="22"></line>
+        </svg>
+        <p>With <span id="tipRooms">--</span> rooms at £<span id="tipRent">--</span>/week, your tenants cover <span id="tipPercent">--</span>% of your rent — you keep the rest.</p>
       </div>
     </div>
-
-    <!-- TIP -->
-    <div class="tip">
-      <svg class="sf-tip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
-      </svg>
-      <p>Every listing on illU includes a direct <strong>Open in Google Maps</strong> link on the property card. Click it to see the exact location before you contact the host.</p>
-    </div>
-
   </div>
 
-  <script src="src/features.js" type="module"></script>
-
+  <script src="script.js"></script>
 </body>
 </html>
