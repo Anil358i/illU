@@ -801,3 +801,363 @@ main {
 }
 
 .detail-map-link:hover { background: rgba(0, 0, 0, 0.08); }
+/* ═══════════════════════════════════════════════════════════════════════════
+   EXPLORE SECTION - FEATURE CARDS CAROUSEL
+   Apple-Style Design with Curved Images & Smooth Scrolling
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ─────────────────────────────────────────────────────────────────────────
+   SECTION HEADING & LAYOUT
+   ───────────────────────────────────────────────────────────────────────── */
+
+.explore-heading {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 8px;
+  letter-spacing: -0.5px;
+}
+
+.explore-subheading {
+  font-size: 16px;
+  color: var(--muted);
+  margin-bottom: 32px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   CARDS CAROUSEL WRAPPER (Container with Navigation)
+   ───────────────────────────────────────────────────────────────────────── */
+
+.cards-carousel-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 48px;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   CAROUSEL NAVIGATION BUTTONS
+   ───────────────────────────────────────────────────────────────────────── */
+
+.carousel-nav-btn {
+  position: relative;
+  z-index: 10;
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--divider);
+  border-radius: 12px;
+  background: var(--bg-secondary);
+  color: var(--text);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  opacity: 0.3;
+}
+
+.carousel-nav-btn:hover {
+  background: var(--bg-hover);
+  border-color: var(--text-secondary);
+}
+
+.carousel-nav-btn:active {
+  transform: scale(0.95);
+}
+
+/* Disabled state */
+.carousel-nav-btn[disabled] {
+  opacity: 0.2;
+  cursor: not-allowed;
+  background: var(--bg-secondary);
+}
+
+.carousel-nav-btn svg {
+  width: 20px;
+  height: 20px;
+  stroke-width: 2;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   MAIN CAROUSEL SCROLL CONTAINER
+   ───────────────────────────────────────────────────────────────────────── */
+
+.cards-carousel {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 8px 0;
+  flex: 1;
+  
+  /* Hide scrollbar but keep scrolling functional */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.cards-carousel::-webkit-scrollbar {
+  display: none;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   INDIVIDUAL FEATURE CARD
+   ───────────────────────────────────────────────────────────────────────── */
+
+.feature-card {
+  /* Flex Layout */
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  
+  /* Sizing */
+  width: 280px;
+  height: 340px;
+  
+  /* Styling */
+  background: var(--bg-secondary);
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid var(--divider);
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+}
+
+.feature-card:hover {
+  /* Subtle lift effect */
+  transform: translateY(-8px);
+  border-color: var(--text-secondary);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+}
+
+.feature-card:active {
+  transform: translateY(-4px);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   CARD IMAGE CONTAINER (with curved border)
+   ───────────────────────────────────────────────────────────────────────── */
+
+.feature-card-image {
+  width: 100%;
+  height: 180px;
+  overflow: hidden;
+  border-radius: 16px 16px 0 0;
+  background: linear-gradient(135deg, #f5f5f7 0%, #e8e8ed 100%);
+}
+
+.feature-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.3s ease;
+}
+
+.feature-card:hover .feature-card-image img {
+  /* Subtle zoom on hover */
+  transform: scale(1.05);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   CARD CONTENT (Text Area)
+   ───────────────────────────────────────────────────────────────────────── */
+
+.feature-card-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+  padding: 20px;
+}
+
+.feature-card-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text);
+  margin: 0;
+  margin-bottom: 6px;
+  letter-spacing: -0.3px;
+}
+
+.feature-card-description {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.4;
+  font-weight: 400;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   DARK MODE SUPPORT
+   ───────────────────────────────────────────────────────────────────────── */
+
+@media (prefers-color-scheme: dark) {
+  .feature-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .feature-card:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+  }
+
+  .feature-card-image {
+    background: linear-gradient(135deg, #1d1d1f 0%, #2c2c2e 100%);
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   MOBILE RESPONSIVE (Smaller Screens)
+   ───────────────────────────────────────────────────────────────────────── */
+
+@media (max-width: 768px) {
+  .feature-card {
+    width: 240px;
+    height: 300px;
+  }
+
+  .feature-card-image {
+    height: 150px;
+  }
+
+  .feature-card-content {
+    padding: 16px;
+  }
+
+  .feature-card-title {
+    font-size: 16px;
+  }
+
+  .feature-card-description {
+    font-size: 12px;
+  }
+
+  .cards-carousel {
+    gap: 12px;
+  }
+
+  .carousel-nav-btn {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .feature-card {
+    width: 220px;
+    height: 280px;
+  }
+
+  .feature-card-image {
+    height: 130px;
+  }
+
+  .feature-card-content {
+    padding: 14px;
+  }
+
+  .feature-card-title {
+    font-size: 15px;
+  }
+
+  .feature-card-description {
+    font-size: 11px;
+  }
+
+  .carousel-nav-btn {
+    width: 36px;
+    height: 36px;
+  }
+
+  .cards-carousel-wrapper {
+    gap: 8px;
+  }
+
+  .cards-carousel {
+    gap: 10px;
+  }
+
+  .explore-heading {
+    font-size: 28px;
+  }
+
+  .explore-subheading {
+    font-size: 15px;
+    margin-bottom: 24px;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   ACCESSIBILITY
+   ───────────────────────────────────────────────────────────────────────── */
+
+/* Focus state for keyboard navigation */
+.feature-card:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.carousel-nav-btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .feature-card,
+  .feature-card-image img,
+  .carousel-nav-btn,
+  .cards-carousel {
+    transition: none;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   SMOOTH SCROLLING ENHANCEMENT
+   ───────────────────────────────────────────────────────────────────────── */
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Prevent text selection on buttons */
+.carousel-nav-btn {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   OPTIONAL: TOUCH SCROLL INDICATOR (for mobile)
+   ───────────────────────────────────────────────────────────────────────── */
+
+@media (max-width: 768px) {
+  .cards-carousel {
+    /* Add subtle fade effect at edges on mobile */
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 20px,
+      black calc(100% - 20px),
+      transparent
+    );
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   OPTIONAL: ADD THIS TO SECTION CONTAINER FOR PADDING
+   ───────────────────────────────────────────────────────────────────────── */
+
+.explore-section {
+  /* Make sure this section has proper spacing */
+  padding: 0 20px;
+  /* or adjust based on your existing layout */
+}
