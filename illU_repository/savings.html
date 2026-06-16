@@ -4,27 +4,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Savings Calculator — illU AI</title>
-  <link rel="stylesheet" href="src/style.css">
   <link rel="stylesheet" href="src/cards.css">
-  <link rel="stylesheet" href="src/savings-calculator.css">
 </head>
 <body>
+  <header class="sav-topbar">
+    <div class="sav-brand">illU AI</div>
+    <a href="index.html" class="sav-home-btn">Back to home</a>
+  </header>
+
   <div class="sav-page">
-    
-    <a href="index.html" class="sav-back-btn">
-      <svg class="sav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-        <polyline points="15 18 9 12 15 6"></polyline>
-      </svg>
-      Back to illU
-    </a>
-    
     <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800" class="sav-hero-img" alt="Save money">
-    
+
     <h1 class="sav-title">How much could you save?</h1>
     <p class="sav-subtitle">Rent a 3-bed house, fill the spare rooms, and let your tenants cover most of your rent. Use the calculator below.</p>
 
     <div class="sav-calc-card">
-      
       <p class="sav-calc-label">Your monthly rent (£)</p>
       <input type="number" class="sav-calc-input" id="totalRent" value="2000">
 
@@ -64,9 +58,9 @@
         </svg>
         <p>With <span id="tipRooms">--</span> rooms at £<span id="tipRent">--</span>/week, your tenants cover <span id="tipPercent">--</span>% of your rent — you keep the rest.</p>
       </div>
-      
     </div>
   </div>
-  <script type="module" src="src/feature.js"></script>
+
+  <script src="src/features.js"></script>
 </body>
 </html>
