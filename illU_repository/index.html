@@ -216,6 +216,46 @@
         statusText.textContent = "Upload failed. Try again.";
       }
     };
+
+    // ─────────────────────────────────────────────────────────────────
+    // CAROUSEL NAVIGATION FOR CARDS
+    // ─────────────────────────────────────────────────────────────────
+    window.scrollCarouselLeft = function() {
+      const carousel = document.getElementById('cardsCarousel');
+      if (carousel) {
+        carousel.scrollBy({ left: -300, behavior: 'smooth' });
+      }
+    };
+
+    window.scrollCarouselRight = function() {
+      const carousel = document.getElementById('cardsCarousel');
+      if (carousel) {
+        carousel.scrollBy({ left: 300, behavior: 'smooth' });
+      }
+    };
+
+    // Update scroll buttons visibility based on scroll position
+    function updateScrollButtons() {
+      const carousel = document.getElementById('cardsCarousel');
+      const leftBtn = document.getElementById('carouselLeftBtn');
+      const rightBtn = document.getElementById('carouselRightBtn');
+
+      if (!carousel || !leftBtn || !rightBtn) return;
+
+      leftBtn.style.opacity = carousel.scrollLeft > 0 ? '1' : '0.3';
+      rightBtn.style.opacity = 
+        carousel.scrollLeft < carousel.scrollWidth - carousel.clientWidth - 10 ? '1' : '0.3';
+    }
+
+    // Initialize carousel scroll event listener
+    document.addEventListener('DOMContentLoaded', function() {
+      const carousel = document.getElementById('cardsCarousel');
+      if (carousel) {
+        carousel.addEventListener('scroll', updateScrollButtons);
+        // Initial button state
+        setTimeout(updateScrollButtons, 100);
+      }
+    });
   </script>
   <script src="https://upload-widget.cloudinary.com/global/all.js"></script>
 </head>
@@ -399,14 +439,104 @@
         </div>
       </section>
 
+      <!-- ═══════════════════════════════════════════════════════════════ -->
+      <!-- EXPLORE SECTION WITH SLIDING CARDS -->
+      <!-- ═══════════════════════════════════════════════════════════════ -->
       <section class="explore-section fade-in" id="explore">
-        <div>
-          <a href="verified.html"><button>Verified</button></a>
-          <a href="savings.html"><button>Savings</button></a>
-          <a href="register.html"><button>Register</button></a>
-          <a href="maps.html"><button>Maps</button></a>
+        
+        <h2 class="explore-heading">Explore illU AI</h2>
+        <p class="explore-subheading">Choose a feature to get started</p>
+
+        <!-- Cards Carousel Container -->
+        <div class="cards-carousel-wrapper">
+          
+          <!-- Left Scroll Button -->
+          <button 
+            class="carousel-nav-btn carousel-nav-btn-left" 
+            id="carouselLeftBtn"
+            onclick="scrollCarouselLeft()"
+            aria-label="Scroll cards left">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+          </button>
+
+          <!-- Cards Carousel -->
+          <div class="cards-carousel" id="cardsCarousel">
+            
+            <!-- Card 1: Verified -->
+            <a href="verified.html" class="feature-card">
+              <div class="feature-card-image">
+                <img 
+                  src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=500&h=300&fit=crop"
+                  alt="Verified listings"
+                >
+              </div>
+              <div class="feature-card-content">
+                <h3 class="feature-card-title">Verified</h3>
+                <p class="feature-card-description">Browse verified properties</p>
+              </div>
+            </a>
+
+            <!-- Card 2: Savings -->
+            <a href="savings.html" class="feature-card">
+              <div class="feature-card-image">
+                <img 
+                  src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=500&h=300&fit=crop"
+                  alt="Savings calculator"
+                >
+              </div>
+              <div class="feature-card-content">
+                <h3 class="feature-card-title">Savings</h3>
+                <p class="feature-card-description">Calculate your savings</p>
+              </div>
+            </a>
+
+            <!-- Card 3: Register -->
+            <a href="register.html" class="feature-card">
+              <div class="feature-card-image">
+                <img 
+                  src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=500&h=300&fit=crop"
+                  alt="Register property"
+                >
+              </div>
+              <div class="feature-card-content">
+                <h3 class="feature-card-title">Register</h3>
+                <p class="feature-card-description">List your property</p>
+              </div>
+            </a>
+
+            <!-- Card 4: Maps -->
+            <a href="maps.html" class="feature-card">
+              <div class="feature-card-image">
+                <img 
+                  src="https://images.unsplash.com/photo-1524661135-423995f22d0b?w=500&h=300&fit=crop"
+                  alt="Interactive maps"
+                >
+              </div>
+              <div class="feature-card-content">
+                <h3 class="feature-card-title">Maps</h3>
+                <p class="feature-card-description">View properties on map</p>
+              </div>
+            </a>
+
+          </div>
+
+          <!-- Right Scroll Button -->
+          <button 
+            class="carousel-nav-btn carousel-nav-btn-right" 
+            id="carouselRightBtn"
+            onclick="scrollCarouselRight()"
+            aria-label="Scroll cards right">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
+
         </div>
-        <h2>Available Listings</h2>
+
+        <!-- Existing Properties Carousel (if still needed) -->
+        <h2 style="margin-top:3rem;">Available Listings</h2>
         <div class="toggle-group">
           <button class="toggle-btn active" onclick="setDuration('day', this)">Day</button>
           <button class="toggle-btn" onclick="setDuration('week', this)">Week</button>
